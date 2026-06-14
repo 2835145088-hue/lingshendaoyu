@@ -1,0 +1,24 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2835145088-hue/lingshendaoyu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/2835145088-hue/lingshendaoyu/issues"
+  },
+  "homepage": "https://github.com/2835145088-hue/lingshendaoyu#readme",
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

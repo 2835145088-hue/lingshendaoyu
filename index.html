@@ -831,6 +831,18 @@
         .dl-info { flex: 1; min-width: 0; }
         .dl-info h4 { font-size: 14.5px; color: var(--deep); margin-bottom: 2px; }
         .dl-info span { font-size: 12px; color: var(--text-light); }
+        .dl-qr {
+            width: 36px; height: 36px;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            transition: transform 0.2s;
+        }
+        .dl-qr:hover {
+            transform: scale(3);
+            z-index: 10;
+            box-shadow: var(--shadow-lg);
+        }
         .dl-btn {
             background: var(--deep);
             color: white;
@@ -1824,7 +1836,7 @@
                         <h4>研学手册</h4>
                         <span>PDF · 约4.8MB</span>
                     </div>
-                    <a href="downloads/研学手册.pdf" class="dl-btn" download>下载</a>
+                    <img src="qrcodes/handbook-pdf.png" class="dl-qr" alt="QR" loading="lazy"><a href="downloads/%E7%A0%94%E5%AD%A6%E6%89%8B%E5%86%8C.pdf" class="dl-btn" download>下载</a>
                 </div>
                 <div class="dl-card fade-up">
                     <div class="dl-icon">
@@ -1834,7 +1846,7 @@
                         <h4>研学景点交通说明</h4>
                         <span>DOCX · 约13KB</span>
                     </div>
-                    <a href="downloads/研学景点交通说明.docx" class="dl-btn" download>下载</a>
+                    <img src="qrcodes/traffic-docx.png" class="dl-qr" alt="QR" loading="lazy"><a href="downloads/%E7%A0%94%E5%AD%A6%E6%99%AF%E7%82%B9%E4%BA%A4%E9%80%9A%E8%AF%B4%E6%98%8E.docx" class="dl-btn" download>下载</a>
                 </div>
                 <div class="dl-card fade-up">
                     <div class="dl-icon">
@@ -1844,7 +1856,7 @@
                         <h4>研学食宿说明</h4>
                         <span>DOCX · 约14KB</span>
                     </div>
-                    <a href="downloads/研学食宿说明.docx" class="dl-btn" download>下载</a>
+                    <img src="qrcodes/hotel-docx.png" class="dl-qr" alt="QR" loading="lazy"><a href="downloads/%E7%A0%94%E5%AD%A6%E9%A3%9F%E5%AE%BF%E8%AF%B4%E6%98%8E.docx" class="dl-btn" download>下载</a>
                 </div>
                 <div class="dl-card fade-up">
                     <div class="dl-icon">
@@ -1854,7 +1866,7 @@
                         <h4>天气应急处置预案</h4>
                         <span>DOCX · 约15KB</span>
                     </div>
-                    <a href="downloads/研学活动天气应急处置预案.docx" class="dl-btn" download>下载</a>
+                    <img src="qrcodes/weather-docx.png" class="dl-qr" alt="QR" loading="lazy"><a href="downloads/%E7%A0%94%E5%AD%A6%E6%B4%BB%E5%8A%A8%E5%A4%A9%E6%B0%94%E5%BA%94%E6%80%A5%E5%A4%84%E7%BD%AE%E9%A2%84%E6%A1%88.docx" class="dl-btn" download>下载</a>
                 </div>
                 <div class="dl-card fade-up">
                     <div class="dl-icon">
@@ -1864,7 +1876,7 @@
                         <h4>家长安全告知书</h4>
                         <span>DOCX · 约15KB</span>
                     </div>
-                    <a href="downloads/研学活动家长安全告知书.docx" class="dl-btn" download>下载</a>
+                    <img src="qrcodes/safety-docx.png" class="dl-qr" alt="QR" loading="lazy"><a href="downloads/%E7%A0%94%E5%AD%A6%E6%B4%BB%E5%8A%A8%E5%AE%B6%E9%95%BF%E5%AE%89%E5%85%A8%E5%91%8A%E7%9F%A5%E4%B9%A6.docx" class="dl-btn" download>下载</a>
                 </div>
                 <div class="dl-card fade-up">
                     <div class="dl-icon">
@@ -1874,7 +1886,7 @@
                         <h4>研学路线地图</h4>
                         <span>PNG · 约2MB</span>
                     </div>
-                    <a href="downloads/研学地图.png" class="dl-btn" download>下载</a>
+                    <img src="qrcodes/map-png.png" class="dl-qr" alt="QR" loading="lazy"><a href="downloads/%E7%A0%94%E5%AD%A6%E5%9C%B0%E5%9B%BE.png" class="dl-btn" download>下载</a>
                 </div>
             </div>
         </div>
@@ -1954,6 +1966,27 @@
             </form>
         </div>
     </section>
+
+    <!-- ==================== 扫码访问 ==================== -->
+    <div class="section--wide" style="text-align:center;">
+        <div class="section-inner">
+            <div class="section-head">
+                <h2>扫码访问</h2>
+                <div class="line"></div>
+                <p>扫描二维码，在手机上打开网站或分享给他人</p>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:center;">
+                <div style="text-align:center;">
+                    <img src="qrcodes/website.png" alt="网站二维码" style="width:180px;border-radius:8px;box-shadow:var(--shadow);">
+                    <p style="margin-top:12px;font-size:13px;color:var(--text-mid);">网站首页</p>
+                </div>
+                <div style="text-align:center;">
+                    <img src="qrcodes/ai-lab.png" alt="AI实验室二维码" style="width:180px;border-radius:8px;box-shadow:var(--shadow);">
+                    <p style="margin-top:12px;font-size:13px;color:var(--text-mid);">AI 火山模拟实验室</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ==================== CTA ==================== -->
     <div class="cta">
