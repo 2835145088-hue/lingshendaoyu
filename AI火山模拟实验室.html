@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>火山铸岛 · 塑就格局 | 大陈岛地质成因探究</title>
+  <style>
+    :root {
+      --bg-deep: #0d1117;
+      --bg-panel: #161b22;
+      --bg-surface: #1c2333;
+      --text-primary: #e6edf3;
+      --text-secondary: #b0b8c4;
+      --text-muted: #6e7681;
+      --accent-amber: #d4a853;
+      --accent-rust: #b8623e;
+      --accent-ocean: #3b7da8;
+      --accent-lava: #e0553d;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-panel: rgba(255, 255, 255, 0.12);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --font-sans: 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+      --font-mono: 'SF Mono', 'JetBrains Mono', 'Consolas', monospace;
+      --nav-width: 210px;
+      --transition-fast: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; font-family: var(--font-sans); background: var(--bg-deep); color: var(--text-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; user-select: none; }
+    .app-container { display: flex; width: 100%; height: 100vh; overflow: hidden; }
+    .side-nav { width: var(--nav-width); min-width: var(--nav-width); height: 100vh; background: var(--bg-panel); border-right: 1px solid var(--border-panel); display: flex; flex-direction: column; padding: 1.8rem 0; z-index: 100; box-shadow: 2px 0 20px rgba(0,0,0,0.3); }
+    .nav-logo { text-align: center; padding: 0 1.2rem 1.8rem; border-bottom: 1px solid var(--border-subtle); margin-bottom: 1.8rem; }
+    .nav-logo .volcano-icon { font-size: 2rem; display: block; margin-bottom: 0.3rem; }
+    .nav-logo h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.06em; color: var(--accent-amber); line-height: 1.3; }
+    .nav-logo p { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .nav-items { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; padding: 0 1.2rem; }
+    .nav-item { display: flex; align-items: center; gap: 0.8em; padding: 0.8em 1em; border-radius: var(--radius-sm); cursor: pointer; transition: all var(--transition-fast); font-size: 0.85rem; letter-spacing: 0.03em; color: var(--text-secondary); text-decoration: none; border: 1px solid transparent; }
+    .nav-item:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #fff; }
+    .nav-item.active { background: rgba(212,168,83,0.1); border-color: var(--accent-amber); color: var(--accent-amber); font-weight: 600; }
+    .nav-item .nav-icon { font-size: 1.1em; width: 1.2em; text-align: center; opacity: 0.8; }
+    .main-content { flex: 1; height: 100vh; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; position: relative; }
+    .page { display: none; width: 100%; min-height: 100vh; padding: 2.2rem 2.5rem; animation: fadeIn 0.4s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-section { position: relative; width: 100%; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .hero-bg-layer { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg-ocean { position: absolute; inset: 0; background: linear-gradient(180deg, #1a3a4f 0%, #0f2d3d 8%, #1b4d6b 18%, #1a5c7a 28%, #1e6b8a 38%, #1a5f7d 48%, #134b63 58%, #1e3d4f 68%, #253540 76%, #2a3a3f 84%, #1e2d30 92%, #161e22 100%); z-index: 1; }
+    .hero-bg-island { position: absolute; bottom: -5%; left: 18%; width: 64%; height: 62%; background: radial-gradient(ellipse at 55% 40%, #2d3d2f 0%, #263828 15%, #1f3020 28%, #1a2b1c 40%, #3d4530 52%, #2d3522 62%, #1e2618 74%, #2a3020 85%, #1a2016 100%); border-radius: 52% 48% 42% 58% / 55% 60% 40% 45%; z-index: 2; box-shadow: inset 0 30px 80px rgba(0,0,0,0.35), 0 -8px 40px rgba(20,40,30,0.5); filter: contrast(1.1) saturate(0.7); }
+    .hero-bg-island::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 30% 25%, rgba(60,80,55,0.6) 0%, transparent 50%), radial-gradient(ellipse at 65% 35%, rgba(55,70,45,0.5) 0%, transparent 45%), radial-gradient(ellipse at 50% 55%, rgba(40,50,30,0.7) 0%, transparent 40%); }
+    .hero-rock-texture { position: absolute; inset: 0; z-index: 3; opacity: 0.55; background: repeating-linear-gradient(2deg, transparent, transparent 3px, rgba(60,45,35,0.08) 3px, rgba(60,45,35,0.08) 4px), repeating-linear-gradient(94deg, transparent, transparent 7px, rgba(80,55,40,0.06) 7px, rgba(80,55,40,0.06) 8px), radial-gradient(ellipse at 40% 60%, rgba(70,50,35,0.5) 0%, transparent 55%), radial-gradient(ellipse at 55% 45%, rgba(55,40,28,0.4) 0%, transparent 50%); mix-blend-mode: overlay; pointer-events: none; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 5; background: linear-gradient(180deg, rgba(8,14,20,0.55) 0%, rgba(8,14,20,0.3) 30%, rgba(8,14,20,0.45) 60%, rgba(8,14,20,0.7) 85%, rgba(6,10,15,0.85) 100%); pointer-events: none; }
+    .hero-content { position: relative; z-index: 10; text-align: center; padding: 2rem 2.5rem; max-width: 820px; width: 90%; }
+    .hero-badge { display: inline-block; font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.14em; color: var(--accent-amber); border: 1px solid rgba(212,168,83,0.4); padding: 0.45em 1.4em; border-radius: 2px; margin-bottom: 1.6rem; background: rgba(20,16,10,0.5); backdrop-filter: blur(6px); text-transform: uppercase; }
+    .hero-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; letter-spacing: 0.06em; line-height: 1.35; color: #f0f3f6; margin-bottom: 0.7rem; text-shadow: 0 2px 18px rgba(0,0,0,0.6); }
+    .hero-subtitle { font-size: clamp(1.1rem, 1.8vw, 1.4rem); color: var(--text-secondary); letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .hero-location { font-size: 0.95rem; color: #a0b4c4; letter-spacing: 0.06em; margin-bottom: 2rem; }
+    .hero-btn { display: inline-flex; align-items: center; gap: 0.5em; font-size: 1rem; letter-spacing: 0.05em; color: #fff; background: rgba(30,40,50,0.7); border: 1px solid rgba(255,255,255,0.3); padding: 0.7em 2em; border-radius: 2px; cursor: pointer; transition: all var(--transition-smooth); backdrop-filter: blur(8px); text-decoration: none; }
+    .hero-btn:hover { background: rgba(40,55,70,0.8); border-color: rgba(255,255,255,0.5); box-shadow: 0 4px 24px rgba(0,0,0,0.4); transform: translateY(-2px); }
+
+    .task-header { background: var(--bg-surface); border-left: 4px solid var(--accent-amber); padding: 1rem 1.5rem; border-radius: var(--radius-sm); margin-bottom: 2rem; color: var(--text-secondary); font-weight: 500; }
+    .task-header h3 { color: var(--accent-amber); margin-bottom: 0.3rem; font-weight: 600; }
+    .section-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary); border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem; }
+
+    .comparison-wrapper { display: flex; flex-direction: column; gap: 1rem; }
+    .dual-screen-container { display: flex; gap: 1px; width: 100%; aspect-ratio: 2.4 / 1; min-height: 420px; max-height: 550px; background: #000; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; border: 1px solid var(--border-panel); }
+    .screen-panel { flex: 1; position: relative; overflow: hidden; background: #000; }
+    .screen-panel canvas { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .screen-divider { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.25); z-index: 5; transform: translateX(-50%); pointer-events: none; }
+    .panel-label { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 6; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.06em; color: #fff; background: rgba(0,0,0,0.7); padding: 0.3em 1em; border-radius: 2px; pointer-events: none; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2); }
+    .panel-label.left { color: #fbab8c; border-left: 2px solid #e0553d; }
+    .panel-label.right { color: #8cc8e8; border-left: 2px solid #3b7da8; }
+    .science-tag { position: absolute; z-index: 7; font-size: 0.75rem; font-weight: 500; color: #fff; background: rgba(10,15,22,0.9); border: 1px solid rgba(255,255,255,0.3); padding: 0.35em 0.8em; border-radius: 3px; pointer-events: none; opacity: 0; transform: translateY(6px); transition: opacity 0.4s, transform 0.4s; backdrop-filter: blur(6px); }
+    .science-tag.visible { opacity: 1; transform: translateY(0); }
+    .science-tag.left-tag { border-left: 2px solid #e0553d; }
+    .science-tag.right-tag { border-left: 2px solid #3b7da8; }
+    .control-bar { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: center; padding: 0.6rem 1rem; background: var(--bg-surface); border-radius: var(--radius-md); border: 1px solid var(--border-panel); }
+    .ctrl-btn { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border-subtle); background: var(--bg-panel); color: var(--text-primary); cursor: pointer; transition: all var(--transition-fast); }
+    .ctrl-btn:hover { background: #252d3a; border-color: rgba(255,255,255,0.25); }
+    .ctrl-btn.active { background: #2a3545; border-color: var(--accent-amber); color: var(--accent-amber); }
+    .ctrl-speed-btn { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; width: auto; padding: 0 0.6rem; height: 30px; border-radius: 15px; }
+    .progress-container { width: 100%; display: flex; align-items: center; gap: 0.5rem; }
+    .progress-bar-bg { flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; cursor: pointer; }
+    .progress-bar-fill { height: 100%; background: var(--accent-amber); border-radius: 2px; transition: width 0.15s linear; }
+
+    .diff-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+    .diff-table th, .diff-table td { border: 1px solid var(--border-panel); padding: 0.7em 1em; text-align: left; }
+    .diff-table th { background: var(--bg-surface); font-weight: 600; color: var(--accent-amber); }
+    .rock-analysis { margin-top: 2rem; background: var(--bg-surface); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-panel); }
+    .rock-options { display: flex; gap: 1rem; margin: 1rem 0; }
+    .rock-option-btn { background: var(--bg-panel); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 0.5em 1.4em; border-radius: 3px; cursor: pointer; transition: all 0.2s; }
+    .rock-option-btn.selected { border-color: var(--accent-amber); background: #2a3545; color: var(--accent-amber); }
+    .rock-feedback { margin-top: 0.5rem; font-size: 0.9rem; }
+
+    .evolution-container { display: flex; flex-direction: column; gap: 1rem; }
+    .evolution-canvas-wrapper { background: #0a1219; border-radius: var(--radius-md); border: 1px solid var(--border-panel); aspect-ratio: 2.2 / 1; max-height: 500px; position: relative; overflow: hidden; }
+    .evolution-canvas-wrapper canvas { width: 100%; height: 100%; display: block; }
+    .timeline-slider { width: 100%; -webkit-appearance: none; height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; outline: none; }
+    .timeline-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent-amber); cursor: pointer; border: 2px solid #000; }
+    .evolution-info { background: var(--bg-surface); border: 1px solid var(--border-panel); border-radius: var(--radius-md); padding: 1rem; text-align: center; font-size: 0.9rem; }
+
+    @media (max-width: 900px) { .side-nav { width: 160px; min-width: 160px; } .page { padding: 1.5rem; } .dual-screen-container { aspect-ratio: auto; flex-direction: column; min-height: auto; } .screen-panel { aspect-ratio: 16/9; min-height: 200px; } }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <nav class="side-nav">
+    <div class="nav-logo">
+      <span class="volcano-icon">🌋</span>
+      <h3>火山铸岛</h3>
+      <p>大陈岛地质研学平台</p>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item active" data-page="page1"><span class="nav-icon">●</span> 首页</div>
+      <div class="nav-item" data-page="page2"><span class="nav-icon">◈</span> 洋、陆火山喷发对比实验</div>
+      <div class="nav-item" data-page="page3"><span class="nav-icon">▸</span> 喷发差异与产物特征总结</div>
+      <div class="nav-item" data-page="page4"><span class="nav-icon">⏻</span> 大陈岛形成全过程示意</div>
+    </div>
+  </nav>
+  <main class="main-content">
+    <!-- 第一页：首页 -->
+    <section class="page active" id="page1">
+      <div class="hero-section">
+        <div class="hero-bg-layer"><div class="hero-bg-ocean"></div><div class="hero-bg-island"></div><div class="hero-rock-texture"></div><div class="hero-overlay"></div></div>
+        <div class="hero-content">
+          <div class="hero-badge">地质科学研学 · 火山岩专题</div>
+          <h1 class="hero-title">火山铸岛 · 塑就格局</h1>
+          <p class="hero-subtitle">大陈岛地质成因探究</p>
+          <p class="hero-location">浙江省台州市椒江区 · 大陈岛乌沙头景区</p>
+          <p style="color:#b0b8c4; margin-bottom:2rem; font-size:0.9rem;">中生代流纹质火山岩地貌 · 海蚀地貌典型剖面</p>
+          <div class="hero-btn" onclick="navigateTo('page2')">进入仿真实验平台 ↓</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 第二页：洋、陆火山喷发对比实验 -->
+    <section class="page" id="page2">
+      <div class="task-header"><h3>探究任务</h3><p>对比两类火山在<strong>喷发速度、喷发强度、喷发形式</strong>上存在哪些差异？请仔细观察左右画面，注意关键帧提示。</p></div>
+      <h2 class="section-title">陆地火山喷发 · 洋底近海火山喷发 同步对比</h2>
+      <div class="comparison-wrapper">
+        <div class="dual-screen-container" id="dualScreen">
+          <div class="screen-panel" id="leftPanel"><canvas id="canvasLand"></canvas><div class="panel-label left">陆地火山 · 高空喷发</div><div class="science-tag left-tag" id="tagLand1" style="top:22%;left:8%;">熔岩流动：强 · 大面积连续</div><div class="science-tag left-tag" id="tagLand2" style="top:48%;right:6%;">喷发剧烈 · 高空喷射</div><div class="science-tag left-tag" id="tagLand3" style="bottom:18%;left:10%;">空气冷却 · 缓慢散热</div></div>
+          <div class="screen-panel" id="rightPanel"><canvas id="canvasOcean"></canvas><div class="panel-label right">洋底火山 · 水下涌柱</div><div class="science-tag right-tag" id="tagOcean1" style="top:26%;left:8%;">熔岩流动：弱 · 细碎分散</div><div class="science-tag right-tag" id="tagOcean2" style="top:50%;right:6%;">喷发平缓 · 海水压制</div><div class="science-tag right-tag" id="tagOcean3" style="bottom:16%;left:10%;">水冷急速 · 瞬间凝固</div></div>
+          <div class="screen-divider"></div>
+        </div>
+        <div class="control-bar" id="controlBar">
+          <button class="ctrl-btn" id="btnPlay"><svg id="iconPlay" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><svg id="iconPause" viewBox="0 0 24 24" style="display:none;"><rect x="5" y="3" width="5" height="18"/><rect x="14" y="3" width="5" height="18"/></svg></button>
+          <button class="ctrl-btn ctrl-speed-btn" data-speed="0.25" id="btnSpeed025">0.25x</button>
+          <button class="ctrl-btn ctrl-speed-btn" data-speed="0.5" id="btnSpeed05">0.5x</button>
+          <button class="ctrl-btn ctrl-speed-btn active" data-speed="1" id="btnSpeed1">1x</button>
+          <button class="ctrl-btn" id="btnLoop"><svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg></button>
+        </div>
+        <div class="progress-container"><span class="progress-time" id="timeDisplay">00:00</span><div class="progress-bar-bg" id="progressBarBg"><div class="progress-bar-fill" id="progressBarFill" style="width:0%;"></div></div><span class="progress-time" id="durationDisplay">00:10</span></div>
+      </div>
+    </section>
+
+    <!-- 第三页：喷发差异与产物特征总结 -->
+    <section class="page" id="page3">
+      <div class="task-header"><h3>探究任务</h3><p>根据洋底、陆地火山喷发以及形成物质特征的差异，结合周边岩壁特征，<strong>推断大陈岛火山成因的类型</strong>。</p></div>
+      <h2 class="section-title">洋、陆火山喷发差异总结</h2>
+      <table class="diff-table"><thead><tr><th>对比维度</th><th>陆地火山喷发</th><th>洋底火山喷发</th></tr></thead><tbody><tr><td>喷发环境</td><td>大气中，自由空间</td><td>深水高压，受限环境</td></tr><tr><td>冷却速度</td><td>空气冷却，缓慢散热</td><td>水冷急速，瞬间凝固</td></tr><tr><td>熔岩流动</td><td>大面积连续流动，形成厚层熔岩</td><td>流动受限，细碎分散，无大面积流</td></tr><tr><td>喷发强度</td><td>剧烈，高空喷发柱</td><td>平缓，水下涌柱，受水压抑制</td></tr><tr><td>典型产物</td><td>流纹岩、熔结凝灰岩、柱状节理</td><td>枕状熔岩、淬碎角砾岩、玻璃质碎屑</td></tr><tr><td>外观特征</td><td>块状构造，流纹构造明显，气孔杏仁</td><td>枕状或球状构造，淬火边，碎屑结构</td></tr></tbody></table>
+      <div class="rock-analysis">
+        <h3>乌沙头剖面岩性辨析</h3>
+        <p style="color:#b0b8c4; margin:0.8rem 0;">野外实测显示：岩石呈浅灰红色，发育典型的<strong>柱状节理、流纹构造、高温熔结构造</strong>，指示岩浆就位时温度较高、冷却相对较慢。请结合上表判断其喷发类型：</p>
+        <div class="rock-options"><button class="rock-option-btn" data-type="land">陆地火山喷发</button><button class="rock-option-btn" data-type="ocean">洋底火山喷发</button></div>
+        <div class="rock-feedback" id="rockFeedback"></div>
+      </div>
+    </section>
+
+    <!-- 第四页：大陈岛形成全过程示意 -->
+    <section class="page" id="page4">
+      <div class="task-header"><h3>探究任务</h3><p>拖动时间轴，观察大陈岛由古火山台地经海陆变迁演变为现今海岛地貌的完整过程，分析<strong>内力作用与外力作用</strong>如何共同塑造地貌格局。</p></div>
+      <h2 class="section-title">大陈岛地质过程演变</h2>
+      <div class="evolution-container">
+        <div class="evolution-canvas-wrapper"><canvas id="evolutionCanvas"></canvas></div>
+        <input type="range" class="timeline-slider" id="timelineSlider" min="0" max="100" value="0" step="0.5">
+        <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-muted);"><span>晚侏罗世</span><span>早白垩世</span><span>古近纪</span><span>中新世</span><span>第四纪</span><span>现代</span></div>
+        <div class="evolution-info" id="evolutionInfo"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function() {
+  // 页面导航
+  const navItems = document.querySelectorAll('.nav-item');
+  const pages = document.querySelectorAll('.page');
+  let currentPage = 'page1';
+  function navigateTo(pageId) {
+    if (currentPage === pageId) return;
+    navItems.forEach(item => item.classList.toggle('active', item.dataset.page === pageId));
+    pages.forEach(page => page.classList.toggle('active', page.id === pageId));
+    currentPage = pageId;
+    if (pageId === 'page2') bootComparison(); else stopComparison();
+    if (pageId === 'page4') initEvolution();
+  }
+  navItems.forEach(item => item.addEventListener('click', () => navigateTo(item.dataset.page)));
+  window.navigateTo = navigateTo;
+
+  // ========== 火山对比动画 (优化画风) ==========
+  const canvasLand = document.getElementById('canvasLand');
+  const canvasOcean = document.getElementById('canvasOcean');
+  const ctxLand = canvasLand.getContext('2d');
+  const ctxOcean = canvasOcean.getContext('2d');
+  const btnPlay = document.getElementById('btnPlay');
+  const iconPlay = document.getElementById('iconPlay');
+  const iconPause = document.getElementById('iconPause');
+  const btnLoop = document.getElementById('btnLoop');
+  const progressBarFill = document.getElementById('progressBarFill');
+  const progressBarBg = document.getElementById('progressBarBg');
+  const timeDisplay = document.getElementById('timeDisplay');
+  const durationDisplay = document.getElementById('durationDisplay');
+  const tagLand1 = document.getElementById('tagLand1');
+  const tagLand2 = document.getElementById('tagLand2');
+  const tagLand3 = document.getElementById('tagLand3');
+  const tagOcean1 = document.getElementById('tagOcean1');
+  const tagOcean2 = document.getElementById('tagOcean2');
+  const tagOcean3 = document.getElementById('tagOcean3');
+
+  const TOTAL_DURATION = 10;
+  let isPlaying = true, isLooping = true, playbackSpeed = 1.0, animationTime = 0, lastFrameTimestamp = null, animationId = null, comparisonActive = false;
+
+  function resizeCanvases() {
+    const leftPanel = document.getElementById('leftPanel');
+    const rightPanel = document.getElementById('rightPanel');
+    if (!leftPanel || !rightPanel) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    [canvasLand, leftPanel, canvasOcean, rightPanel].forEach((el, i) => {
+      if (i % 2 === 0) {
+        const panel = [leftPanel, rightPanel][i/2];
+        const rect = panel.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          el.width = rect.width * dpr;
+          el.height = rect.height * dpr;
+          el.style.width = rect.width + 'px';
+          el.style.height = rect.height + 'px';
+          const ctx = el.getContext('2d');
+          ctx.setTransform(1,0,0,1,0,0);
+          ctx.scale(dpr, dpr);
+        }
+      }
+    });
+  }
+
+  class LandParticle {
+    constructor(w,h,vx,vy){this.reset(w,h,vx,vy);}
+    reset(w,h,vx,vy){
+      this.x=vx+(Math.random()-0.5)*18; this.y=vy+(Math.random()-0.5)*6;
+      let angle=-Math.PI/2+(Math.random()-0.5)*1.2;
+      let speed=180+Math.random()*520;
+      this.vx=Math.cos(angle)*speed; this.vy=Math.sin(angle)*speed;
+      this.life=0.6+Math.random()*2.8; this.maxLife=this.life;
+      this.size=1.5+Math.random()*5.5; this.type=Math.random()<0.4?'lava_bomb':'ash';
+      this.gravity=160+Math.random()*200; this.trail=[];
+    }
+    update(dt,w,h,vx,vy){
+      this.life-=dt; if(this.life<=0){this.reset(w,h,vx,vy); this.life=this.maxLife; this.trail=[];}
+      this.vy+=this.gravity*dt; this.x+=this.vx*dt; this.y+=this.vy*dt;
+      this.trail.push({x:this.x,y:this.y,a:1}); if(this.trail.length>10) this.trail.shift();
+      for(let t of this.trail) t.a*=0.82;
+      if(this.y>h+40||this.x<-40||this.x>w+40){this.reset(w,h,vx,vy); this.trail=[];}
+    }
+    alpha(){let r=Math.max(0,this.life/this.maxLife); return r<0.2?r/0.2:1;}
+    color(){
+      let r=this.life/this.maxLife;
+      if(this.type==='lava_bomb') return r>0.6?{r:255,g:160,b:20}:r>0.3?{r:240,g:100,b:15}:{r:180,g:45,b:8};
+      else return r>0.7?{r:190,g:130,b:45}:r>0.4?{r:140,g:85,b:30}:{r:90,g:50,b:20};
+    }
+  }
+  class OceanParticle {
+    constructor(w,h,vx,vy){this.reset(w,h,vx,vy);}
+    reset(w,h,vx,vy){
+      this.x=vx+(Math.random()-0.5)*14; this.y=vy+(Math.random()-0.5)*4;
+      let angle=-Math.PI/2+(Math.random()-0.5)*0.7;
+      let speed=40+Math.random()*180;
+      this.vx=Math.cos(angle)*speed; this.vy=Math.sin(angle)*speed;
+      this.life=0.4+Math.random()*1.6; this.maxLife=this.life;
+      this.size=0.6+Math.random()*2.8; this.type=Math.random()<0.5?'debris':'bubble';
+      this.waterDrag=3.5+Math.random()*6; this.gravity=30+Math.random()*70; this.trail=[];
+    }
+    update(dt,w,h,vx,vy){
+      this.life-=dt; if(this.life<=0){this.reset(w,h,vx,vy); this.life=this.maxLife; this.trail=[];}
+      this.vx*=Math.exp(-this.waterDrag*dt); this.vy*=Math.exp(-this.waterDrag*dt);
+      this.vy+=this.gravity*dt; this.x+=this.vx*dt; this.y+=this.vy*dt;
+      this.trail.push({x:this.x,y:this.y,a:1}); if(this.trail.length>6) this.trail.shift();
+      for(let t of this.trail) t.a*=0.7;
+      if(this.y>h+30||this.x<-30||this.x>w+30){this.reset(w,h,vx,vy); this.trail=[];}
+    }
+    alpha(){let r=Math.max(0,this.life/this.maxLife); return r<0.25?r/0.25:0.7;}
+    color(){
+      if(this.type==='debris') return this.life/this.maxLife>0.5?{r:80,g:50,b:30}:{r:45,g:35,b:25};
+      else return {r:150,g:190,b:215};
+    }
+  }
+
+  let landParts=[], oceanParts=[];
+  function initParticles(){
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    const wL=canvasLand.width/dpr, hL=canvasLand.height/dpr;
+    const wO=canvasOcean.width/dpr, hO=canvasOcean.height/dpr;
+    landParts=[]; oceanParts=[];
+    for(let i=0;i<140;i++){let p=new LandParticle(wL,hL,wL*0.5,hL*0.42); p.life=Math.random()*p.maxLife; landParts.push(p);}
+    for(let i=0;i<120;i++){let p=new OceanParticle(wO,hO,wO*0.5,hO*0.6); p.life=Math.random()*p.maxLife; oceanParts.push(p);}
+  }
+
+  function drawLand(ctx,w,h,time,parts){
+    // 真实感天空
+    let sky=ctx.createLinearGradient(0,0,0,h);
+    sky.addColorStop(0,'#2c4050'); sky.addColorStop(0.5,'#4f6d7a'); sky.addColorStop(1,'#8aa0ad');
+    ctx.fillStyle=sky; ctx.fillRect(0,0,w,h);
+    // 远山
+    ctx.fillStyle='#3d4a38'; ctx.beginPath(); ctx.moveTo(0,h); ctx.quadraticCurveTo(w*0.15,h*0.6,w*0.28,h*0.55); ctx.quadraticCurveTo(w*0.4,h*0.48,w*0.5,h*0.52); ctx.quadraticCurveTo(w*0.6,h*0.5,w*0.72,h*0.56); ctx.quadraticCurveTo(w*0.85,h*0.62,w,h*0.58); ctx.lineTo(w,h); ctx.closePath(); ctx.fill();
+    let vx=w*0.5, vy=h*0.42;
+    // 火山锥
+    let cone=ctx.createLinearGradient(vx-70,vy,vx+70,vy+100);
+    cone.addColorStop(0,'#5a4030'); cone.addColorStop(0.3,'#4a3428'); cone.addColorStop(1,'#2d1f16');
+    ctx.fillStyle=cone; ctx.beginPath();
+    ctx.moveTo(vx-75,vy+8); ctx.quadraticCurveTo(vx-40,vy-35,vx-8,vy-50); ctx.quadraticCurveTo(vx+5,vy-48,vx+10,vy-50); ctx.quadraticCurveTo(vx+45,vy-33,vx+80,vy+6); ctx.quadraticCurveTo(vx+100,vy+80,vx+120,h); ctx.lineTo(vx-130,h); ctx.quadraticCurveTo(vx-105,vy+78,vx-75,vy+8); ctx.closePath(); ctx.fill();
+    // 火山口强光
+    let glow=ctx.createRadialGradient(vx,vy-35,2,vx,vy-30,32);
+    glow.addColorStop(0,'rgba(255,220,80,0.95)'); glow.addColorStop(0.5,'rgba(255,120,30,0.6)'); glow.addColorStop(1,'rgba(200,60,10,0)');
+    ctx.fillStyle=glow; ctx.beginPath(); ctx.arc(vx,vy-32,32,0,Math.PI*2); ctx.fill();
+    // 粒子排序
+    let sorted=[...parts].sort((a,b)=>b.y-a.y);
+    for(let p of sorted){
+      let a=p.alpha(); if(a<0.02) continue;
+      let c=p.color();
+      for(let t of p.trail){ let ta=t.a*a*0.5; if(ta<0.02) continue; ctx.fillStyle=`rgba(${c.r},${c.g},${c.b},${ta})`; ctx.beginPath(); ctx.arc(t.x,t.y,p.size*0.5,0,Math.PI*2); ctx.fill(); }
+      ctx.fillStyle=`rgba(${c.r},${c.g},${c.b},${a})`; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+      if(p.type==='lava_bomb'&&a>0.4){ ctx.fillStyle=`rgba(255,200,100,${a*0.3})`; ctx.beginPath(); ctx.arc(p.x,p.y,p.size*2.2,0,Math.PI*2); ctx.fill(); }
+    }
+    // 熔岩流
+    let flow=ctx.createLinearGradient(vx-40,vy+60,vx+50,vy+160);
+    flow.addColorStop(0,'rgba(240,100,20,0.85)'); flow.addColorStop(0.5,'rgba(200,55,10,0.75)'); flow.addColorStop(1,'rgba(120,25,5,0.5)');
+    ctx.fillStyle=flow; ctx.beginPath(); ctx.moveTo(vx-25,vy+15); ctx.quadraticCurveTo(vx-15,vy+50,vx-10,vy+90); ctx.quadraticCurveTo(vx+5,vy+130,vx+25,vy+155); ctx.lineTo(vx+45,vy+140); ctx.quadraticCurveTo(vx+20,vy+100,vx+15,vy+50); ctx.closePath(); ctx.fill();
+    // 火山灰云
+    let ash=ctx.createRadialGradient(vx,vy-80,10,vx,vy-150,90);
+    ash.addColorStop(0,'rgba(150,130,110,0.5)'); ash.addColorStop(1,'rgba(100,85,70,0)');
+    ctx.fillStyle=ash; ctx.beginPath(); ctx.arc(vx+5,vy-120,80,0,Math.PI*2); ctx.fill();
+    // 喷发柱
+    let col=ctx.createLinearGradient(vx,vy-60,vx,vy-180);
+    col.addColorStop(0,'rgba(255,160,40,0.7)'); col.addColorStop(0.5,'rgba(200,100,30,0.4)'); col.addColorStop(1,'rgba(120,60,20,0)');
+    ctx.fillStyle=col; ctx.beginPath(); ctx.moveTo(vx-12,vy-30); ctx.quadraticCurveTo(vx-6,vy-100,vx+8,vy-160); ctx.lineTo(vx+14,vy-155); ctx.quadraticCurveTo(vx+10,vy-90,vx+6,vy-30); ctx.closePath(); ctx.fill();
+  }
+
+  function drawOcean(ctx,w,h,time,parts){
+    let water=ctx.createLinearGradient(0,0,0,h);
+    water.addColorStop(0,'#06121c'); water.addColorStop(0.5,'#0b2840'); water.addColorStop(1,'#051018');
+    ctx.fillStyle=water; ctx.fillRect(0,0,w,h);
+    // 海底
+    let bed=ctx.createLinearGradient(0,h*0.65,0,h);
+    bed.addColorStop(0,'#1a2a30'); bed.addColorStop(1,'#0d181c');
+    ctx.fillStyle=bed; ctx.beginPath(); ctx.moveTo(0,h*0.68); ctx.quadraticCurveTo(w*0.4,h*0.62,w*0.65,h*0.6); ctx.quadraticCurveTo(w*0.8,h*0.63,w,h*0.61); ctx.lineTo(w,h); ctx.lineTo(0,h); ctx.closePath(); ctx.fill();
+    let vx=w*0.5, vy=h*0.6;
+    // 火山口
+    let cone=ctx.createLinearGradient(vx-40,vy,vx+40,vy+50);
+    cone.addColorStop(0,'#3a3028'); cone.addColorStop(1,'#1e1815');
+    ctx.fillStyle=cone; ctx.beginPath(); ctx.moveTo(vx-35,vy+5); ctx.quadraticCurveTo(vx-18,vy-15,vx-4,vy-22); ctx.quadraticCurveTo(vx+18,vy-14,vx+45,vy+20); ctx.lineTo(vx+60,h); ctx.lineTo(vx-60,h); ctx.closePath(); ctx.fill();
+    // 热液光
+    let vent=ctx.createRadialGradient(vx,vy-12,2,vx,vy-8,18);
+    vent.addColorStop(0,'rgba(255,180,100,0.45)'); vent.addColorStop(0.6,'rgba(200,120,60,0.2)'); vent.addColorStop(1,'rgba(150,80,40,0)');
+    ctx.fillStyle=vent; ctx.beginPath(); ctx.arc(vx,vy-10,18,0,Math.PI*2); ctx.fill();
+    let sorted=[...parts].sort((a,b)=>b.y-a.y);
+    for(let p of sorted){
+      let a=p.alpha(); if(a<0.02) continue;
+      let c=p.color();
+      for(let t of p.trail){ let ta=t.a*a*0.4; if(ta<0.02) continue; ctx.fillStyle=`rgba(${c.r},${c.g},${c.b},${ta})`; ctx.beginPath(); ctx.arc(t.x,t.y,p.size*0.45,0,Math.PI*2); ctx.fill(); }
+      ctx.fillStyle=`rgba(${c.r},${c.g},${c.b},${a})`; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+    }
+    // 涌柱
+    let plume=ctx.createLinearGradient(vx,vy-30,vx,vy-130);
+    plume.addColorStop(0,'rgba(180,200,210,0.25)'); plume.addColorStop(0.7,'rgba(140,170,190,0.1)'); plume.addColorStop(1,'rgba(100,140,160,0)');
+    ctx.fillStyle=plume; ctx.beginPath(); ctx.moveTo(vx-8,vy-18); ctx.quadraticCurveTo(vx-3,vy-70,vx+6,vy-125); ctx.lineTo(vx+14,vy-120); ctx.quadraticCurveTo(vx+12,vy-60,vx+10,vy-18); ctx.closePath(); ctx.fill();
+    // 碎屑云
+    let debris=ctx.createRadialGradient(vx,vy-45,6,vx+15,vy-55,45);
+    debris.addColorStop(0,'rgba(90,70,50,0.3)'); debris.addColorStop(1,'rgba(40,30,20,0)');
+    ctx.fillStyle=debris; ctx.beginPath(); ctx.arc(vx+5,vy-50,45,0,Math.PI*2); ctx.fill();
+  }
+
+  const allTags=[tagLand1,tagLand2,tagLand3,tagOcean1,tagOcean2,tagOcean3];
+  const tagSched=[{tags:[tagLand2,tagOcean2],s:0.08,e:0.22},{tags:[tagLand1,tagOcean1],s:0.30,e:0.48},{tags:[tagLand3,tagOcean3],s:0.55,e:0.72},{tags:[tagLand1,tagLand2,tagOcean1,tagOcean2],s:0.78,e:0.92}];
+  function updateTags(ratio){ let act=new Set(); for(let s of tagSched){ if(ratio>=s.s&&ratio<=s.e) s.tags.forEach(t=>act.add(t)); } allTags.forEach(t=>t.classList.toggle('visible',act.has(t))); }
+
+  function animateCompare(ts){
+    if(!comparisonActive) return;
+    if(!lastFrameTimestamp) lastFrameTimestamp=ts;
+    let dt=(ts-lastFrameTimestamp)/1000; lastFrameTimestamp=ts;
+    if(dt>0.15) dt=0.15; if(dt<=0) dt=0.016;
+    dt*=playbackSpeed;
+    if(isPlaying){
+      animationTime+=dt;
+      if(animationTime>=TOTAL_DURATION){ if(isLooping) animationTime%=TOTAL_DURATION; else{ animationTime=TOTAL_DURATION; isPlaying=false; updatePlayBtn(); } }
+    }
+    let ratio=animationTime/TOTAL_DURATION;
+    let dpr=Math.min(window.devicePixelRatio||1,2);
+    let lw=canvasLand.width/dpr, lh=canvasLand.height/dpr;
+    let ow=canvasOcean.width/dpr, oh=canvasOcean.height/dpr;
+    if(isPlaying){
+      landParts.forEach(p=>p.update(dt,lw,lh,lw*0.5,lh*0.42));
+      oceanParts.forEach(p=>p.update(dt,ow,oh,ow*0.5,oh*0.6));
+    }
+    ctxLand.clearRect(0,0,lw,lh); ctxOcean.clearRect(0,0,ow,oh);
+    drawLand(ctxLand,lw,lh,animationTime,landParts);
+    drawOcean(ctxOcean,ow,oh,animationTime,oceanParts);
+    progressBarFill.style.width=(ratio*100)+'%';
+    timeDisplay.textContent=String(Math.floor(animationTime/60)).padStart(2,'0')+':'+String(Math.floor(animationTime%60)).padStart(2,'0');
+    updateTags(ratio);
+    animationId=requestAnimationFrame(animateCompare);
+  }
+  function updatePlayBtn(){ iconPlay.style.display=isPlaying?'none':'block'; iconPause.style.display=isPlaying?'block':'none'; }
+  function togglePlay(){ if(animationTime>=TOTAL_DURATION&&!isLooping) animationTime=0; isPlaying=!isPlaying; lastFrameTimestamp=null; updatePlayBtn(); }
+  function setSpeed(s){ playbackSpeed=s; document.querySelectorAll('.ctrl-speed-btn').forEach(b=>b.classList.remove('active')); document.getElementById('btnSpeed'+(s===0.25?'025':s===0.5?'05':'1')).classList.add('active'); }
+  function toggleLoop(){ isLooping=!isLooping; btnLoop.classList.toggle('active',isLooping); }
+  function bootComparison(){
+    if(comparisonActive) return;
+    comparisonActive=true; resizeCanvases(); initParticles(); lastFrameTimestamp=null;
+    if(animationId) cancelAnimationFrame(animationId);
+    animationId=requestAnimationFrame(animateCompare);
+    if(!btnPlay._bound){ btnPlay.addEventListener('click',togglePlay); btnLoop.addEventListener('click',toggleLoop); document.getElementById('btnSpeed025').addEventListener('click',()=>setSpeed(0.25)); document.getElementById('btnSpeed05').addEventListener('click',()=>setSpeed(0.5)); document.getElementById('btnSpeed1').addEventListener('click',()=>setSpeed(1)); progressBarBg.addEventListener('click',(e)=>{ let r=progressBarBg.getBoundingClientRect(); animationTime=Math.max(0,Math.min(TOTAL_DURATION,((e.clientX-r.left)/r.width)*TOTAL_DURATION)); lastFrameTimestamp=null; }); btnPlay._bound=true; }
+    updatePlayBtn(); btnLoop.classList.toggle('active',isLooping);
+  }
+  function stopComparison(){ comparisonActive=false; if(animationId){ cancelAnimationFrame(animationId); animationId=null; } }
+  document.addEventListener('keydown',e=>{ if(currentPage!=='page2') return; if(e.key===' '){ e.preventDefault(); togglePlay(); } else if(e.key==='l') toggleLoop(); else if(e.key==='1') setSpeed(1); else if(e.key==='2') setSpeed(0.5); else if(e.key==='3') setSpeed(0.25); });
+
+  // 岩石辨析
+  document.querySelectorAll('.rock-option-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.rock-option-btn').forEach(b=>b.classList.remove('selected')); btn.classList.add('selected'); let fb=document.getElementById('rockFeedback'); if(btn.dataset.type==='land'){ fb.innerHTML='<span style="color:#5eaa6e;">正确！</span> 柱状节理、流纹构造与高温熔结特征指示该岩体形成于<strong>陆地火山喷发</strong>环境，岩浆在空气中堆积、冷却较慢。'; } else { fb.innerHTML='<span style="color:#e0553d;">再想想。</span> 洋底喷发通常形成枕状熔岩、淬碎角砾岩，冷却极快，不易发育完整柱状节理与大规模熔结。该标本特征更符合陆相喷发产物。'; } }); });
+
+  // 岛屿演化 (基于真实地质过程)
+  const evoCanvas=document.getElementById('evolutionCanvas');
+  const evoCtx=evoCanvas.getContext('2d');
+  const slider=document.getElementById('timelineSlider');
+  const evoInfo=document.getElementById('evolutionInfo');
+  let evoAnimId=null, evoProgress=0;
+
+  const epochs=[
+    { time:'晚侏罗世 (约150 Ma)', desc:'燕山运动强烈，大规模陆相火山喷发形成巨厚流纹质火山岩台地，奠定大陈岛基底。', landFrac:0.95, force:'内力作用为主（岩浆活动、地壳抬升）' },
+    { time:'早白垩世 (约120 Ma)', desc:'火山活动减弱，地壳开始断陷沉降，台地边缘出现初始裂隙与局部海侵。', landFrac:0.85, force:'内力减弱，外力开始显现' },
+    { time:'古近纪 (约50 Ma)', desc:'持续沉降，海水大面积入侵，古火山台地大部分没入水下，仅残留高耸部分。', landFrac:0.55, force:'外力作用增强（海蚀、沉积）' },
+    { time:'中新世 (约20 Ma)', desc:'海平面波动，海蚀作用加剧，塑造出海蚀崖、海蚀平台等初始岛屿轮廓。', landFrac:0.35, force:'外力作用为主（海蚀、风化）' },
+    { time:'第四纪 (约2 Ma)', desc:'气候冷暖交替，海平面升降频繁，岛屿形态接近现代，海蚀地貌显著。', landFrac:0.2, force:'外力精雕细琢' },
+    { time:'现代', desc:'大陈岛现今地貌：海蚀崖、砾石滩、火山岩台地残丘，完整记录海陆变迁历史。', landFrac:0.15, force:'内外力共同塑造的最终格局' }
+  ];
+
+  function resizeEvo(){
+    let w=evoCanvas.parentElement.clientWidth, h=evoCanvas.parentElement.clientHeight;
+    let dpr=Math.min(window.devicePixelRatio||1,2);
+    if(w>0&&h>0){ evoCanvas.width=w*dpr; evoCanvas.height=h*dpr; evoCanvas.style.width=w+'px'; evoCanvas.style.height=h+'px'; evoCtx.setTransform(1,0,0,1,0,0); evoCtx.scale(dpr,dpr); }
+  }
+
+  function drawEvo(progress){
+    let w=evoCanvas.width/(Math.min(window.devicePixelRatio||1,2));
+    let h=evoCanvas.height/(Math.min(window.devicePixelRatio||1,2));
+    evoCtx.clearRect(0,0,w,h);
+    // 海洋背景
+    let sea=evoCtx.createLinearGradient(0,0,0,h);
+    sea.addColorStop(0,'#1a3a4f'); sea.addColorStop(1,'#0a1a28');
+    evoCtx.fillStyle=sea; evoCtx.fillRect(0,0,w,h);
+    // 根据进度计算陆地比例
+    let idx=progress/100*(epochs.length-1);
+    let i0=Math.floor(idx), i1=Math.min(i0+1,epochs.length-1);
+    let frac=idx-i0;
+    let landFrac=epochs[i0].landFrac*(1-frac)+epochs[i1].landFrac*frac;
+    let seaLevel=h*0.7;
+    // 绘制古火山台地/岛屿
+    let islandW=w*0.55*(0.5+landFrac*0.5);
+    let islandH=h*0.45*landFrac;
+    let cx=w*0.5;
+    // 陆地/岛屿形状
+    evoCtx.fillStyle='#4a5e3a';
+    evoCtx.beginPath();
+    evoCtx.moveTo(cx-islandW, seaLevel);
+    evoCtx.quadraticCurveTo(cx-islandW*0.7, seaLevel-islandH*0.9, cx, seaLevel-islandH);
+    evoCtx.quadraticCurveTo(cx+islandW*0.7, seaLevel-islandH*0.9, cx+islandW, seaLevel);
+    evoCtx.lineTo(cx+islandW+20, h+10);
+    evoCtx.lineTo(cx-islandW-20, h+10);
+    evoCtx.closePath();
+    evoCtx.fill();
+    // 海蚀崖及细节（当岛屿较小时）
+    if(landFrac<0.5){
+      evoCtx.fillStyle='#6a7a5a';
+      evoCtx.beginPath();
+      evoCtx.arc(cx-islandW*0.25, seaLevel-islandH*0.35, 12, 0, Math.PI*2);
+      evoCtx.fill();
+    }
+    // 火山锥（早期阶段）
+    if(landFrac>0.7){
+      evoCtx.fillStyle='#5a4030';
+      evoCtx.beginPath();
+      evoCtx.arc(cx, seaLevel-islandH*0.8, 18, 0, Math.PI*2);
+      evoCtx.fill();
+    }
+    // 标注
+    evoCtx.fillStyle='#fff'; evoCtx.font='11px "PingFang SC"';
+    evoCtx.fillText('古火山台地残丘', cx-30, seaLevel-islandH-10);
+  }
+
+  function updateEvoInfo(progress){
+    let idx=progress/100*(epochs.length-1);
+    let i=Math.round(idx);
+    let e=epochs[Math.min(i,epochs.length-1)];
+    evoInfo.innerHTML=`<h4>${e.time}</h4><p>${e.desc}</p><p style="margin-top:0.3rem;color:var(--accent-amber);">⚡ ${e.force}</p>`;
+  }
+
+  function initEvolution(){
+    resizeEvo(); drawEvo(evoProgress); updateEvoInfo(evoProgress);
+    if(!evoAnimId){ function loop(){ if(currentPage==='page4') drawEvo(evoProgress); evoAnimId=requestAnimationFrame(loop); } evoAnimId=requestAnimationFrame(loop); }
+  }
+
+  slider.addEventListener('input',()=>{ evoProgress=parseFloat(slider.value); updateEvoInfo(evoProgress); });
+
+  window.addEventListener('resize',()=>{
+    if(currentPage==='page2') resizeCanvases();
+    if(currentPage==='page4') resizeEvo();
+  });
+
+  // 初始启动
+  setTimeout(()=>{ resizeEvo(); drawEvo(0); updateEvoInfo(0); },200);
+})();
+</script>
+</body>
+</html>

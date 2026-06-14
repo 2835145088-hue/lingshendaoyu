@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>零碳岛语 — 大思政视域下的台州大陈岛研学</title>
+    <style>
+        /* ========================================
+           CSS VARIABLES
+           ======================================== */
+        :root {
+            --deep: #0b3d5c;
+            --mid: #1a6b8a;
+            --teal: #2a9d8f;
+            --green: #4a9c5d;
+            --sunset: #d4843a;
+            --white: #ffffff;
+            --bg: #f4f7f9;
+            --bg-warm: #f8fafb;
+            --text: #1a1a2e;
+            --text-mid: #4a5568;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --border-light: #edf2f7;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+            --radius: 4px;
+            --section-gap: 96px;
+        }
+
+        /* ========================================
+           RESET & BASE
+           ======================================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(11, 61, 92, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            height: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .nav-logo {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+        .nav-logo i { color: var(--teal); font-style: normal; }
+        .nav-links { display: flex; gap: 4px; }
+        .nav-links a {
+            color: rgba(255,255,255,0.82);
+            padding: 6px 14px;
+            font-size: 13.5px;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--white); }
+        .nav-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ========================================
+           HERO
+           ======================================== */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(11,61,92,0.55), rgba(11,61,92,0.7)),
+                        url('images/hero-bg.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .hero-content { max-width: 720px; padding: 0 24px; }
+        .hero-tag {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.35);
+            padding: 5px 18px;
+            font-size: 12.5px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .hero h1 {
+            font-size: 78px;
+            font-weight: 900;
+            letter-spacing: 10px;
+            margin-bottom: 16px;
+            line-height: 1.1;
+            font-family: "PingFang SC", "Microsoft YaHei", "SimHei", "Helvetica Neue", sans-serif;
+        }
+        .hero h1 span { color: var(--teal); }
+        .hero .subtitle {
+            font-size: 21px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            opacity: 0.88;
+            margin-bottom: 36px;
+        }
+        .hero-meta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        .hero-meta span {
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 6px 18px;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            translate: -50% 0;
+            animation: float 2.2s ease-in-out infinite;
+        }
+        .scroll-indicator svg { width: 26px; height: 26px; opacity: 0.6; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* ========================================
+           SECTION COMMONS
+           ======================================== */
+        .section {
+            padding: var(--section-gap) 48px;
+            max-width: 1140px;
+            margin: 0 auto;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+        }
+        .section:last-of-type { border-bottom: none; }
+        .section--wide {
+            max-width: none;
+            background: var(--bg);
+            padding: var(--section-gap) 48px;
+            border-bottom: 1px solid var(--border);
+        }
+        .section--wide > .section-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .section-head {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section-head h2 {
+            font-size: 38px;
+            font-weight: 900;
+            color: var(--deep);
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+            font-family: "PingFang SC", "Microsoft YaHei", "SimHei", "Helvetica Neue", sans-serif;
+        }
+        .section-head .line {
+            width: 56px;
+            height: 3px;
+            background: var(--teal);
+            margin: 0 auto 16px;
+        }
+        .section-head p {
+            color: var(--text-light);
+            font-size: 16px;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           OVERVIEW CARDS
+           ======================================== */
+        .overview-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .overview-card {
+            flex: 0 0 240px;
+            background: white;
+            padding: 32px 24px;
+            border: 1px solid var(--border-light);
+            transition: all 0.25s;
+        }
+        .overview-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--teal);
+        }
+        .overview-card .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--teal);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .overview-card h3 {
+            font-size: 17px;
+            color: var(--deep);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        .overview-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           PHILOSOPHY CARDS
+           ======================================== */
+        .phil-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+        }
+        .phil-card {
+            flex: 0 0 320px;
+            background: white;
+            border: 1px solid var(--border-light);
+            transition: all 0.25s;
+        }
+        .phil-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .phil-card.accent-blue { border-top: 3px solid #3498db; }
+        .phil-card.accent-teal { border-top: 3px solid var(--teal); }
+        .phil-card.accent-green { border-top: 3px solid var(--green); }
+        .phil-card .card-head {
+            padding: 28px 28px 12px;
+            text-align: center;
+        }
+        .phil-card .card-head h3 {
+            font-size: 18px;
+            color: var(--deep);
+            font-weight: 700;
+        }
+        .phil-card .card-body {
+            padding: 0 28px 28px;
+            color: var(--text-mid);
+            font-size: 14.5px;
+            line-height: 1.8;
+        }
+
+        /* ========================================
+           ROUTE
+           ======================================== */
+        .route-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+        .route-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .route-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.2s;
+        }
+        .route-item:last-child { border-bottom: none; }
+        .route-item:hover { padding-left: 6px; }
+        .route-num {
+            flex-shrink: 0;
+            width: 28px; height: 28px;
+            background: var(--deep);
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+        .route-item:nth-child(1) .route-num { background: var(--deep); }
+        .route-item:nth-child(2) .route-num { background: var(--mid); }
+        .route-item:nth-child(3) .route-num { background: var(--teal); }
+        .route-item:nth-child(4) .route-num { background: #3a8c6e; }
+        .route-item:nth-child(5) .route-num { background: var(--green); }
+        .route-item:nth-child(6) .route-num { background: var(--sunset); }
+        .route-item:nth-child(7) .route-num { background: var(--mid); }
+        .route-item:nth-child(8) .route-num { background: var(--deep); }
+        .route-info h4 {
+            font-size: 15px;
+            color: var(--deep);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .route-info p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        .route-map {
+            position: sticky;
+            top: 80px;
+        }
+        .route-map img {
+            width: 100%;
+            border: 1px solid var(--border);
+        }
+        .route-map .map-hint {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========================================
+           GOALS
+           ======================================== */
+        .goals-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .goal-card {
+            flex: 0 0 200px;
+            background: white;
+            padding: 30px 24px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            border-bottom: 3px solid transparent;
+            transition: all 0.25s;
+        }
+        .goal-card:hover { box-shadow: var(--shadow-lg); }
+        .goal-card:nth-child(1) { border-bottom-color: #3498db; }
+        .goal-card:nth-child(2) { border-bottom-color: #7c5cbf; }
+        .goal-card:nth-child(3) { border-bottom-color: var(--green); }
+        .goal-card:nth-child(4) { border-bottom-color: var(--sunset); }
+        .goal-card:nth-child(5) { border-bottom-color: #d94535; }
+        .goal-card h3 {
+            font-size: 17px;
+            color: var(--deep);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .goal-card p {
+            font-size: 13.5px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           SCHEDULE / TIMELINE
+           ======================================== */
+        .day-label {
+            text-align: center;
+            margin: 48px 0 36px;
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--deep);
+            letter-spacing: 2px;
+        }
+        .day-label span {
+            background: var(--deep);
+            color: white;
+            padding: 8px 28px;
+            letter-spacing: 1px;
+            font-size: 15px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 44px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 16px; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--mid), var(--teal));
+        }
+        .tl-item {
+            position: relative;
+            margin-bottom: 32px;
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 24px 28px;
+            transition: box-shadow 0.25s;
+        }
+        .tl-item:hover { box-shadow: var(--shadow); }
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -34px; top: 28px;
+            width: 10px; height: 10px;
+            background: var(--teal);
+            border: 2px solid white;
+            outline: 2px solid var(--teal);
+            border-radius: 50%;
+        }
+        .tl-time {
+            display: inline-block;
+            background: var(--deep);
+            color: white;
+            padding: 3px 14px;
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+        .tl-item h3 {
+            font-size: 18px;
+            color: var(--deep);
+            margin-bottom: 4px;
+        }
+        .tl-loc {
+            color: var(--teal);
+            font-size: 13.5px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .tl-item ul li {
+            padding: 4px 0;
+            color: var(--text-mid);
+            font-size: 14px;
+        }
+        .tl-item ul li::before {
+            content: '— ';
+            color: var(--teal);
+        }
+
+        /* ========================================
+           LOCATION CARDS
+           ======================================== */
+        .loc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .loc-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            transition: all 0.25s;
+        }
+        .loc-card:hover { box-shadow: var(--shadow-lg); }
+        .loc-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .loc-card .loc-text { padding: 20px 22px; }
+        .loc-tag {
+            display: inline-block;
+            background: #eaf5f2;
+            color: #2a7d5f;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .loc-card h3 { font-size: 17px; color: var(--deep); margin-bottom: 6px; }
+        .loc-card p { color: var(--text-light); font-size: 13.5px; line-height: 1.7; }
+
+        /* ========================================
+           EVALUATION
+           ======================================== */
+        .eval-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        .eval-card {
+            flex: 0 0 180px;
+            background: white;
+            padding: 26px 18px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: all 0.25s;
+        }
+        .eval-card:hover { box-shadow: var(--shadow); }
+        .eval-card .eval-key {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--teal);
+            margin-bottom: 4px;
+        }
+        .eval-card h4 { font-size: 15px; color: var(--deep); margin-bottom: 6px; }
+        .eval-card p { font-size: 12.5px; color: var(--text-light); }
+
+        /* ========================================
+           SAFETY
+           ======================================== */
+        .safety-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .safety-card {
+            flex: 0 0 260px;
+            background: white;
+            padding: 26px;
+            border: 1px solid var(--border-light);
+            border-left: 3px solid var(--teal);
+            transition: all 0.25s;
+        }
+        .safety-card:hover { box-shadow: var(--shadow); }
+        .safety-card h3 {
+            font-size: 16px;
+            color: var(--deep);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .safety-card ul li {
+            padding: 4px 0;
+            color: var(--text-mid);
+            font-size: 13.5px;
+        }
+        .safety-card ul li::before {
+            content: '— ';
+            color: var(--teal);
+        }
+
+        /* ========================================
+           PHOTO GALLERY (NEW)
+           ======================================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px;
+        }
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            aspect-ratio: 4 / 3;
+            transition: all 0.25s;
+        }
+        .gallery-item:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 24px 14px 10px;
+            font-size: 13px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover .gallery-caption { opacity: 1; }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.92);
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px; right: 28px;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            font-size: 24px;
+            width: 40px; height: 40px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            translate: 0 -50%;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            font-size: 28px;
+            width: 44px; height: 44px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-nav:hover { background: rgba(255,255,255,0.15); }
+        .lightbox-prev { left: 24px; }
+        .lightbox-next { right: 24px; }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 28px;
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* ========================================
+           DOWNLOADS (NEW)
+           ======================================== */
+        .dl-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        .dl-card {
+            flex: 0 0 320px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: white;
+            padding: 20px 22px;
+            border: 1px solid var(--border);
+            transition: all 0.25s;
+        }
+        .dl-card:hover {
+            box-shadow: var(--shadow);
+            border-color: var(--teal);
+        }
+        .dl-icon {
+            width: 44px; height: 44px;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 18px;
+            color: var(--teal);
+        }
+        .dl-info { flex: 1; min-width: 0; }
+        .dl-info h4 { font-size: 14.5px; color: var(--deep); margin-bottom: 2px; }
+        .dl-info span { font-size: 12px; color: var(--text-light); }
+        .dl-btn {
+            background: var(--deep);
+            color: white;
+            padding: 7px 16px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .dl-btn:hover { background: var(--mid); }
+
+        /* ========================================
+           REGISTRATION FORM (NEW)
+           ======================================== */
+        .reg-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .reg-info h3 {
+            font-size: 22px;
+            color: var(--deep);
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+        .reg-info p {
+            color: var(--text-mid);
+            font-size: 14.5px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .reg-info .reg-features {
+            display: grid;
+            gap: 12px;
+        }
+        .reg-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-mid);
+        }
+        .reg-feature .dot {
+            width: 6px; height: 6px;
+            background: var(--teal);
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+        .reg-form {
+            background: white;
+            padding: 32px;
+            border: 1px solid var(--border);
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-mid);
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text);
+            background: var(--bg-warm);
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--teal);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .form-submit {
+            width: 100%;
+            padding: 12px;
+            background: var(--deep);
+            color: white;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+        .form-submit:hover { background: var(--mid); }
+
+        /* ========================================
+           CTA
+           ======================================== */
+        .cta {
+            background: linear-gradient(160deg, var(--deep), #0d4f75);
+            color: white;
+            text-align: center;
+            padding: 80px 24px;
+        }
+        .cta h2 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .cta p {
+            font-size: 15px;
+            opacity: 0.8;
+            margin-bottom: 28px;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: var(--teal);
+            color: white;
+            padding: 12px 32px;
+            font-size: 14.5px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+        .cta-btn:hover {
+            background: #238b7e;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: #072034;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 36px 24px;
+            font-size: 13.5px;
+            line-height: 2;
+        }
+        .footer strong { color: white; }
+
+        /* ========================================
+           BACK TO TOP
+           ======================================== */
+        .btt {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            width: 40px; height: 40px;
+            background: var(--deep);
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btt.show { opacity: 1; visibility: visible; }
+        .btt:hover { background: var(--mid); }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 768px) {
+            .nav { padding: 0 20px; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px; left: 0; right: 0;
+                background: rgba(11,61,92,0.98);
+                flex-direction: column;
+                padding: 12px 0;
+                border-top: 1px solid rgba(255,255,255,0.08);
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 10px 24px; }
+            .nav-btn { display: block; }
+
+            .hero h1 { font-size: 42px; letter-spacing: 5px; }
+            .hero .subtitle { font-size: 17px; }
+            .section { padding: 64px 20px; }
+            .section--wide { padding: 64px 20px; }
+            .section-head h2 { font-size: 30px; letter-spacing: 2px; }
+
+            .reg-wrap { grid-template-columns: 1fr; gap: 32px; }
+            .form-row { grid-template-columns: 1fr; }
+            .route-layout { grid-template-columns: 1fr; gap: 32px; }
+            .route-map { order: -1; }
+            #aitool .section + div { grid-template-columns: 1fr; gap: 28px; }
+
+            .timeline { padding-left: 32px; }
+            .tl-item::before { left: -26px; top: 24px; width: 8px; height: 8px; }
+
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+
+            /* Flex cards: keep 2 per row on tablet, full-width on mobile */
+            .goal-card    { flex: 0 0 160px; }
+            .eval-card    { flex: 0 0 150px; }
+            .overview-card { flex: 0 0 200px; }
+            .phil-card    { flex: 0 0 280px; }
+            .safety-card  { flex: 0 0 240px; }
+            .dl-card      { flex: 0 0 280px; }
+
+            .loc-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 26px; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+
+            .goal-card    { flex: 0 0 44%; }
+            .eval-card    { flex: 0 0 44%; }
+            .overview-card { flex: 1 1 100%; }
+            .phil-card    { flex: 1 1 100%; }
+            .safety-card  { flex: 1 1 100%; }
+            .dl-card      { flex: 1 1 100%; }
+
+            .loc-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav">
+        <a href="#" class="nav-logo">零碳<i>岛语</i></a>
+        <button class="nav-btn" id="navBtn" aria-label="菜单">&#9776;</button>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview">研学概览</a>
+            <a href="#philosophy">研学理念</a>
+            <a href="#route">研学路线</a>
+            <a href="#goals">课程目标</a>
+            <a href="#schedule">课程安排</a>
+            <a href="#locations">研学地点</a>
+            <a href="#evaluation">课程评价</a>
+            <a href="#safety">安全保障</a>
+            <a href="#aitool">AI教具</a>
+            <a href="#gallery">实践图集</a>
+            <a href="#downloads">附件下载</a>
+            <a href="#register">线上报名</a>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">九州杯全国研学课程设计大赛</div>
+            <h1>零碳<span>岛语</span></h1>
+            <p class="subtitle">大思政视域下的台州大陈岛研学</p>
+            <div class="hero-meta">
+                <span>浙江台州 · 大陈岛</span>
+                <span>高二选考地理学生</span>
+                <span>两天一夜</span>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </header>
+
+    <!-- ==================== 研学概览 ==================== -->
+    <section class="section" id="overview">
+        <div class="section-head">
+            <h2>研学概览</h2>
+            <div class="line"></div>
+            <p>从荒岛到低碳岛，大陈岛如何走出绿色发展之路？</p>
+        </div>
+        <div class="overview-grid">
+            <div class="overview-card fade-up">
+                <div class="label">Theme</div>
+                <h3>研学主题</h3>
+                <p>零碳岛语——大思政视域下的台州大陈岛研学方案</p>
+            </div>
+            <div class="overview-card fade-up">
+                <div class="label">Target</div>
+                <h3>研学对象</h3>
+                <p>高二选考地理学生，对接湘教版必修及选择性必修教材</p>
+            </div>
+            <div class="overview-card fade-up">
+                <div class="label">Duration</div>
+                <h3>研学时长</h3>
+                <p>两天一夜<br>DAY1 红色启航 · 零碳探索<br>DAY2 火山塑岛 · 海疆铸梦</p>
+            </div>
+            <div class="overview-card fade-up">
+                <div class="label">Location</div>
+                <h3>研学地点</h3>
+                <p>浙江省台州市椒江区大陈岛（上、下大陈岛）</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 研学理念 ==================== -->
+    <div class="section--wide" id="philosophy">
+        <div class="section-inner">
+            <div class="section-head">
+                <h2>研学理念</h2>
+                <div class="line"></div>
+                <p>三大理论支撑，打造有深度的研学体验</p>
+            </div>
+            <div class="phil-grid">
+                <div class="phil-card accent-blue fade-up">
+                    <div class="card-head"><h3>大思政课理念</h3></div>
+                    <div class="card-body">
+                        <p>大陈岛集<strong>海洋自然资源、红色垦荒精神与"双碳"战略实践</strong>于一体，是"行走的思政课"的理想载体。将红色遗址瞻仰、低碳生态考察、绿氢产业调研等地理实践环节有机串联，实现<strong>地理学科核心素养与思政价值的深度融合</strong>。</p>
+                    </div>
+                </div>
+                <div class="phil-card accent-teal fade-up">
+                    <div class="card-head"><h3>UbD 反向设计</h3></div>
+                    <div class="card-body">
+                        <p>采用<strong>Understanding by Design</strong>反向设计框架，以"在海洋岛屿这一特殊地理单元中，如何通过低碳发展实现人地协调与可持续未来"为核心持久理解目标。逆向确定评估证据，再正向设计学习活动，<strong>以终为始</strong>，确保每一项活动都服务于深度理解。</p>
+                    </div>
+                </div>
+                <div class="phil-card accent-green fade-up">
+                    <div class="card-head"><h3>PBL 项目式学习</h3></div>
+                    <div class="card-body">
+                        <p>采用<strong>Project-Based Learning</strong>理论，以真实情境为驱动，将核心问题分解为两个驱动性问题："大陈岛的碳从哪来、到哪去"与"谁在守护这片海、如何传承这份精神"。学生完成碳源识别、清洁能源探究、碳平衡建模等实践，最终以<strong>低碳方案展演和调研报告</strong>呈现成果。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 研学路线 ==================== -->
+    <section class="section" id="route">
+        <div class="section-head">
+            <h2>研学路线</h2>
+            <div class="line"></div>
+            <p>串联红色记忆、海洋地貌与零碳科技</p>
+        </div>
+        <div class="route-layout">
+            <div class="route-list">
+                <div class="route-item fade-up">
+                    <div class="route-num">01</div>
+                    <div class="route-info">
+                        <h4>椒江 · 码头启航</h4>
+                        <p>集合出发，乘庆达9轮前往下大陈岛，航程约90分钟</p>
+                    </div>
+                </div>
+                <div class="route-item fade-up">
+                    <div class="route-num">02</div>
+                    <div class="route-info">
+                        <h4>一江山岛登陆战纪念馆</h4>
+                        <p>开营仪式，聆听垦荒精神与零碳海岛主题课程</p>
+                    </div>
+                </div>
+                <div class="route-item fade-up">
+                    <div class="route-num">03</div>
+                    <div class="route-info">
+                        <h4>甲午岩景区</h4>
+                        <p>观测海蚀崖、海蚀平台等典型海岸地貌</p>
+                    </div>
+                </div>
+                <div class="route-item fade-up">
+                    <div class="route-num">04</div>
+                    <div class="route-info">
+                        <h4>风电场观景平台</h4>
+                        <p>实地观测风机布设，探究海岛风能富集的地理成因</p>
+                    </div>
+                </div>
+                <div class="route-item fade-up">
+                    <div class="route-num">05</div>
+                    <div class="route-info">
+                        <h4>鸡笼头 · 绿氢示范工程</h4>
+                        <p>学习风电电解海水制氢全流程，测算能量转化效率</p>
+                    </div>
+                </div>
+                <div class="route-item fade-up">
+                    <div class="route-num">06</div>
+                    <div class="route-info">
+                        <h4>垦荒纪念碑 · 双碳馆</h4>
+                        <p>追忆垦荒历史，了解荒岛到低碳岛的蜕变历程</p>
+                    </div>
+                </div>
+                <div class="route-item fade-up">
+                    <div class="route-num">07</div>
+                    <div class="route-info">
+                        <h4>乌沙头砾石滩</h4>
+                        <p>火山碎屑岩海岸，岩石矿物鉴定与火山地貌成因分析</p>
+                    </div>
+                </div>
+                <div class="route-item fade-up">
+                    <div class="route-num">08</div>
+                    <div class="route-info">
+                        <h4>军事文化体验中心</h4>
+                        <p>分析海岛攻防的军事地理逻辑，增强海洋权益意识</p>
+                    </div>
+                </div>
+            </div>
+            <div class="route-map fade-up">
+                <img src="images/map.png" alt="研学路线图">
+                <p class="map-hint">大陈岛研学路线示意</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 课程目标 ==================== -->
+    <div class="section--wide" id="goals">
+        <div class="section-inner">
+            <div class="section-head">
+                <h2>五维课程目标</h2>
+                <div class="line"></div>
+                <p>基于地理核心素养与思政育人的多维目标体系</p>
+            </div>
+            <div class="goals-grid">
+                <div class="goal-card fade-up">
+                    <h3>综合思维</h3>
+                    <p>综合地形、气候、水文等要素，分析大陈岛海蚀地貌与火山海岸形成机制；从"碳源—碳汇—人类活动"三端联动视角构建碳收支框架。</p>
+                </div>
+                <div class="goal-card fade-up">
+                    <h3>区域认知</h3>
+                    <p>从"岛屿性、海洋性、边界性"概括大陈岛地理区位特征；分析风力发电场空间布局差异，阐释自然条件对清洁能源产业的约束与支撑。</p>
+                </div>
+                <div class="goal-card fade-up">
+                    <h3>人地协调观</h3>
+                    <p>以垦荒队员"从无到有"建设大陈岛的历史为主线，分析自然环境对人类活动的制约，以及人类通过低碳技术实现人地协调的路径。</p>
+                </div>
+                <div class="goal-card fade-up">
+                    <h3>地理实践力</h3>
+                    <p>规范使用罗盘、放大镜等工具完成海岸岩石矿物鉴定与海蚀地貌观测；通过碳排放因子查询、定位标注等手段采集碳源碳汇数据。</p>
+                </div>
+                <div class="goal-card fade-up">
+                    <h3>思政育人</h3>
+                    <p>在垦荒纪念碑前阐述"艰苦奋发"精神的当代价值；从军事地理角度分析"海岛攻防的地理逻辑"，增强海洋权益意识与家国情怀。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 课程安排 ==================== -->
+    <section class="section" id="schedule">
+        <div class="section-head">
+            <h2>课程安排</h2>
+            <div class="line"></div>
+            <p>两天一夜，沉浸式海岛研学之旅</p>
+        </div>
+
+        <div class="day-label"><span>DAY 1 · 红色启航 · 零碳探索</span></div>
+
+        <div class="timeline">
+            <div class="tl-item fade-up">
+                <span class="tl-time">8:30 — 10:15</span>
+                <h3>环节一：开营 · 初探精神</h3>
+                <div class="tl-loc">一江山岛登陆战纪念馆</div>
+                <ul>
+                    <li>聆听开营课程，学习大陈岛垦荒精神与零碳海岛核心主题</li>
+                    <li>撰写"我的零碳垦荒宣言"</li>
+                    <li>参观纪念馆，记录"我的战场感悟"</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">10:15 — 11:30</span>
+                <h3>环节二：谒魂 · 薪火长歌</h3>
+                <div class="tl-loc">英雄事迹陈列馆及观景平台</div>
+                <ul>
+                    <li>阅读英雄墙与老照片，完成"红色故事纪念板"</li>
+                    <li>在观景台感悟分享，理解"只有社会主义才能救中国"</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">13:10 — 14:40</span>
+                <h3>环节三：初观海情（海上观测）</h3>
+                <div class="tl-loc">庆达9轮（椒江 — 下大陈岛）</div>
+                <ul>
+                    <li>对比观测近岸、中远海、岛岸三处海水颜色、透明度、浑浊度</li>
+                    <li>记录海面风浪特征，完成"海域观测记录表"</li>
+                    <li>学习海水蓝色成因与朗伯-比尔定律</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">15:00 — 17:00</span>
+                <h3>环节四：观山察海</h3>
+                <div class="tl-loc">甲午岩景区</div>
+                <ul>
+                    <li>观察海蚀崖、海蚀平台、海蚀洞等典型海岸地貌</li>
+                    <li>使用手持风速仪完成风力观测，学习风矢符号标注</li>
+                    <li>从"垦荒困境"与"零碳资源"双视角辩证分析自然条件</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">17:10 — 17:30</span>
+                <h3>环节五：探风寻理</h3>
+                <div class="tl-loc">风电场观景平台</div>
+                <ul>
+                    <li>结合实测数据与地图，探究大陈岛风能富集的地理成因</li>
+                    <li>从大气环流、地形、海陆风、下垫面四维度填写"风电地理优势档案卡"</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">17:30 — 18:30</span>
+                <h3>环节六：探氢知源</h3>
+                <div class="tl-loc">鸡笼头（绿氢示范工程）</div>
+                <ul>
+                    <li>学习富余风电电解海水制氢、储氢、用氢全流程</li>
+                    <li>绘制"风电转绿氢能量转化流程图"，测算能量转化效率</li>
+                    <li>分析绿氢减碳效益</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">19:30 — 20:30</span>
+                <h3>环节七：整碳汇新 · 献策互助</h3>
+                <div class="tl-loc">研学营地（梅花湾）</div>
+                <ul>
+                    <li>计算海岛净碳排放量，研判零碳建设现状与缺口</li>
+                    <li>小组研讨大陈岛零碳建设优化方案，借助AI梳理思路</li>
+                    <li>完成献策单并汇报分享</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="day-label"><span>DAY 2 · 火山塑岛 · 海疆铸梦</span></div>
+
+        <div class="timeline">
+            <div class="tl-item fade-up">
+                <span class="tl-time">8:30 — 9:30</span>
+                <h3>环节一：追忆垦荒</h3>
+                <div class="tl-loc">垦荒纪念碑、双碳馆</div>
+                <ul>
+                    <li>聆听垦荒历史，学习"艰苦创业、奋发图强"十六字垦荒精神</li>
+                    <li>参与宣誓仪式</li>
+                    <li>了解大陈岛从荒岛蜕变零碳试验区的发展历程</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">10:50 — 11:10</span>
+                <h3>环节二：沧溟识岛 · 海疆立防</h3>
+                <div class="tl-loc">乌沙头入口观景平台（上大陈岛）</div>
+                <ul>
+                    <li>观察黑色崖壁与陡峭岸线，思考海岸成因与海防价值</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">11:10 — 11:30</span>
+                <h3>环节三：黑石识质 · 辨岩知类</h3>
+                <div class="tl-loc">乌沙头砾石滩</div>
+                <ul>
+                    <li>使用罗盘和放大镜观测黑石特征，辨别岩石类型</li>
+                    <li>完成"黑石身份卡"</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">11:30 — 12:00</span>
+                <h3>环节四：火山铸岛 · 塑就格局</h3>
+                <div class="tl-loc">乌沙掠影观景平台</div>
+                <ul>
+                    <li>观看火山喷发线上虚拟实验与AI形成视频</li>
+                    <li>归纳火山岛形成过程，完成"黑石成陆·地貌溯源记录"</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">12:00 — 12:30</span>
+                <h3>环节五：海岸析防 · 区位深析</h3>
+                <div class="tl-loc">国民党驻军司令部遗址高地</div>
+                <ul>
+                    <li>结合地形图分析海岛防御、瞭望、航道等区位优势</li>
+                    <li>绘制"乌沙头海防区位示意图"，完成区位分析报告</li>
+                </ul>
+            </div>
+
+            <div class="tl-item fade-up">
+                <span class="tl-time">13:30 — 14:30</span>
+                <h3>环节六：军事文化体验</h3>
+                <div class="tl-loc">军事文化体验中心</div>
+                <ul>
+                    <li>参观展区，寻找印证海防区位的展品与海军建设成就实物</li>
+                    <li>观察台州舰历史资料，讨论大陈岛地形对舰艇巡航的影响</li>
+                    <li>小组展示"海疆证据收集表"，完成互评与个人小结</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 研学地点 ==================== -->
+    <div class="section--wide" id="locations">
+        <div class="section-inner">
+            <div class="section-head">
+                <h2>研学地点</h2>
+                <div class="line"></div>
+                <p>每一个地点都是一本鲜活的地理教科书</p>
+            </div>
+            <div class="loc-grid">
+                <div class="loc-card fade-up">
+                    <img src="images/yijiangshan.jpg" alt="一江山岛登陆战纪念馆" onerror="this.style.background='#0a3d62'">
+                    <div class="loc-text">
+                        <span class="loc-tag">红色教育</span>
+                        <h3>一江山岛登陆战纪念馆</h3>
+                        <p>全国重点文物保护单位，展示一江山岛登陆战的英雄事迹和老照片，是开营仪式与思政教育的起点。</p>
+                    </div>
+                </div>
+                <div class="loc-card fade-up">
+                    <img src="images/jiawuyan.jpg" alt="甲午岩" onerror="this.style.background='#1e6f8c'">
+                    <div class="loc-text">
+                        <span class="loc-tag">海岸地貌</span>
+                        <h3>甲午岩景区</h3>
+                        <p>典型海蚀地貌集中区，海蚀崖、海蚀平台、海蚀洞发育完整，是观察海岸外力作用与岩石类型的天然课堂。</p>
+                    </div>
+                </div>
+                <div class="loc-card fade-up">
+                    <img src="images/reclamation.jpg" alt="垦荒纪念碑" onerror="this.style.background='#2ecc71'">
+                    <div class="loc-text">
+                        <span class="loc-tag">垦荒精神</span>
+                        <h3>垦荒纪念碑</h3>
+                        <p>记录1956年青年垦荒队登岛拓荒历史，周边植被从无到有的演替过程是研究海岛生态修复的活样本。</p>
+                    </div>
+                </div>
+                <div class="loc-card fade-up">
+                    <img src="images/wind-farm.jpg" alt="风力发电场" onerror="this.style.background='#3cb4c4'">
+                    <div class="loc-text">
+                        <span class="loc-tag">清洁能源</span>
+                        <h3>风力发电场</h3>
+                        <p>海岛风电清洁能源基地，年有效风速时数达7637小时，可实地观察风机布设与地形、风向关系。</p>
+                    </div>
+                </div>
+                <div class="loc-card fade-up">
+                    <img src="images/green-hydrogen.jpg" alt="绿氢示范工程" onerror="this.style.background='#1a7a3a'">
+                    <div class="loc-text">
+                        <span class="loc-tag">零碳科技</span>
+                        <h3>鸡笼头绿氢工程</h3>
+                        <p>展示绿氢产业原理，富余风电电解海水制氢—储氢—用氢全流程，适合开展"碳达峰碳中和"教学。</p>
+                    </div>
+                </div>
+                <div class="loc-card fade-up">
+                    <img src="images/coast.jpg" alt="乌沙头砾石滩" onerror="this.style.background='#e67e22'">
+                    <div class="loc-text">
+                        <span class="loc-tag">火山地貌</span>
+                        <h3>乌沙头砾石滩</h3>
+                        <p>火山碎屑岩海岸，红色峭壁与深色砾石对比鲜明，可开展黑石岩石矿物鉴定、火山地貌成因分析。</p>
+                    </div>
+                </div>
+                <div class="loc-card fade-up">
+                    <img src="images/jilongtou.jpg" alt="双碳馆" onerror="this.style.background='#0a3d62'">
+                    <div class="loc-text">
+                        <span class="loc-tag">碳循环教学</span>
+                        <h3>双碳馆</h3>
+                        <p>展示大陈岛从荒岛到低碳岛的转型历程，含碳源碳汇数据展示与清洁能源技术模型，是碳循环教学的实景载体。</p>
+                    </div>
+                </div>
+                <div class="loc-card fade-up">
+                    <img src="images/meihua-bay.jpg" alt="梅花湾" onerror="this.style.background='#f39c12'">
+                    <div class="loc-text">
+                        <span class="loc-tag">研学营地</span>
+                        <h3>梅花湾</h3>
+                        <p>下大陈岛核心生活区，拥有夕阳灯塔等独特景观，是晚间研讨、住宿和小组活动的基地。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 课程评价 ==================== -->
+    <section class="section" id="evaluation">
+        <div class="section-head">
+            <h2>课程评价</h2>
+            <div class="line"></div>
+            <p>基于CIPP模型与地理核心素养的五维评价体系</p>
+        </div>
+        <div class="eval-grid">
+            <div class="eval-card fade-up">
+                <div class="eval-key">C</div>
+                <h4>背景评价</h4>
+                <p>Context Evaluation<br>评估研学目标与课标、学情的契合度</p>
+            </div>
+            <div class="eval-card fade-up">
+                <div class="eval-key">I</div>
+                <h4>输入评价</h4>
+                <p>Input Evaluation<br>评估课程资源、路线设计、安全保障的充足性</p>
+            </div>
+            <div class="eval-card fade-up">
+                <div class="eval-key">P</div>
+                <h4>过程评价</h4>
+                <p>Process Evaluation<br>全程观察记录学生参与度、合作表现、实践能力</p>
+            </div>
+            <div class="eval-card fade-up">
+                <div class="eval-key">P'</div>
+                <h4>成果评价</h4>
+                <p>Product Evaluation<br>评估研学手册、调研报告、低碳方案展演等成果</p>
+            </div>
+            <div class="eval-card fade-up">
+                <div class="eval-key">&#9733;</div>
+                <h4>素养评价</h4>
+                <p>地理核心素养<br>综合思维 · 区域认知 · 人地协调观 · 地理实践力 · 思政育人</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 安全保障 ==================== -->
+    <div class="section--wide" id="safety">
+        <div class="section-inner">
+            <div class="section-head">
+                <h2>安全保障</h2>
+                <div class="line"></div>
+                <p>全方位保障师生研学安全</p>
+            </div>
+            <div class="safety-grid">
+                <div class="safety-card fade-up">
+                    <h3>安全防控保障</h3>
+                    <ul>
+                        <li>所有点位均属已开发成熟景区或管理单位管辖区域</li>
+                        <li>具备基本医疗设施和通信覆盖</li>
+                        <li>无高风险的野外穿越环节</li>
+                        <li>海上航行由正规客运公司承运</li>
+                        <li>全岛活动均在硬化路面或观景平台进行</li>
+                    </ul>
+                </div>
+                <div class="safety-card fade-up">
+                    <h3>组织管理保障</h3>
+                    <ul>
+                        <li>行前召开说明会，签署研学安全承诺书</li>
+                        <li>每10名学生配备1名带队教师</li>
+                        <li>配备急救包、常用药品</li>
+                        <li>建立家长微信群实时通报行程</li>
+                        <li>制定天气应急处置预案</li>
+                    </ul>
+                </div>
+                <div class="safety-card fade-up">
+                    <h3>交通保障</h3>
+                    <ul>
+                        <li>椒江 — 下大陈岛：庆达9轮，航程约90分钟</li>
+                        <li>岛际交通：大陈同心号，航程约20分钟</li>
+                        <li>岛内景交车：旺季7:30-17:30，30分钟/班</li>
+                        <li>需提前2天购票，提前15分钟到达码头</li>
+                        <li>购票渠道："椒江旅游票务"小程序</li>
+                    </ul>
+                </div>
+                <div class="safety-card fade-up">
+                    <h3>应急预案</h3>
+                    <ul>
+                        <li>制定《研学活动天气应急处置预案》</li>
+                        <li>如遇台风、大雾等恶劣天气，启用备用室内方案</li>
+                        <li>每位学生配备《研学活动家长安全告知书》</li>
+                        <li>24小时应急联系电话畅通</li>
+                        <li>咨询电话：0576-88012657 / 0576-88900181</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== AI 教学教具 (NEW) ==================== -->
+    <section class="section" id="aitool">
+        <div class="section-head">
+            <h2>AI 教学教具</h2>
+            <div class="line"></div>
+            <p>借助人工智能技术，打造沉浸式地理学习体验</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+            <div style="display:flex;flex-direction:column;gap:18px;">
+                <div style="border-left:3px solid var(--sunset);padding-left:18px;">
+                    <h3 style="font-size:22px;font-weight:800;color:var(--deep);margin-bottom:6px;">火山铸岛 · 塑就格局</h3>
+                    <p style="font-size:14.5px;color:var(--text-mid);line-height:1.8;">大陈岛地质成因探究 —— 通过交互式三维模拟，直观理解板块碰撞、岩浆上涌、火山喷发与岛屿形成全过程。结合 AI 生成的火山喷发视频，让抽象的地质过程变得触手可及。</p>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                    <span style="background:var(--bg);color:var(--text-mid);padding:5px 14px;font-size:12.5px;border:1px solid var(--border);">板块构造模拟</span>
+                    <span style="background:var(--bg);color:var(--text-mid);padding:5px 14px;font-size:12.5px;border:1px solid var(--border);">火山喷发机理</span>
+                    <span style="background:var(--bg);color:var(--text-mid);padding:5px 14px;font-size:12.5px;border:1px solid var(--border);">AI 视频生成</span>
+                    <span style="background:var(--bg);color:var(--text-mid);padding:5px 14px;font-size:12.5px;border:1px solid var(--border);">岩石矿物鉴定</span>
+                </div>
+                <a href="AI火山模拟实验室.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--sunset);color:white;padding:12px 28px;font-size:14.5px;font-weight:600;letter-spacing:1px;width:fit-content;transition:all 0.2s;"
+                   onmouseover="this.style.background='#c07330'" onmouseout="this.style.background='var(--sunset)'">
+                    进入实验室
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div style="background:linear-gradient(160deg,#0d1117,#161b22);border:1px solid #30363d;padding:32px;text-align:center;">
+                <div style="font-size:56px;margin-bottom:12px;">&#127755;</div>
+                <p style="color:#b0b8c4;font-size:14px;line-height:1.7;">大陈岛火山成因 · 交互式模拟系统</p>
+                <p style="color:#6e7681;font-size:12px;margin-top:8px;">包含：板块构造可视化 / 岩浆活动模拟 / AI 喷发视频生成</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 实践图集 (NEW) ==================== -->
+    <section class="section" id="gallery">
+        <div class="section-head">
+            <h2>实践图集</h2>
+            <div class="line"></div>
+            <p>记录每一个实地考察的精彩瞬间</p>
+        </div>
+
+        <!-- Tab filters -->
+        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px;" id="galleryTabs">
+            <button class="gallery-tab active" data-filter="all" style="border:1px solid var(--border);background:var(--deep);color:white;padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:0.5px;">全部</button>
+            <button class="gallery-tab" data-filter="yijiangshan" style="border:1px solid var(--border);background:white;color:var(--text-mid);padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:0.5px;">一江山岛纪念馆</button>
+            <button class="gallery-tab" data-filter="jiawuyan" style="border:1px solid var(--border);background:white;color:var(--text-mid);padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:0.5px;">甲午岩</button>
+            <button class="gallery-tab" data-filter="platform" style="border:1px solid var(--border);background:white;color:var(--text-mid);padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:0.5px;">观景平台</button>
+            <button class="gallery-tab" data-filter="jilongtou" style="border:1px solid var(--border);background:white;color:var(--text-mid);padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:0.5px;">鸡笼头</button>
+            <button class="gallery-tab" data-filter="reclamation" style="border:1px solid var(--border);background:white;color:var(--text-mid);padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:0.5px;">垦荒纪念碑</button>
+            <button class="gallery-tab" data-filter="meihua" style="border:1px solid var(--border);background:white;color:var(--text-mid);padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:0.5px;">梅花湾</button>
+            <button class="gallery-tab" data-filter="group" style="border:1px solid var(--border);background:white;color:var(--text-mid);padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:0.5px;">考察合照</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- 一江山岛登陆战纪念馆 -->
+            <div class="gallery-item fade-up" data-cat="yijiangshan">
+                <img src="images/gallery/yijiangshan-01.jpg" alt="一江山登陆纪念馆-大门" loading="lazy">
+                <div class="gallery-caption">一江山岛登陆战纪念馆正门</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="yijiangshan">
+                <img src="images/gallery/yijiangshan-02.jpg" alt="一江山登陆纪念馆-进门" loading="lazy">
+                <div class="gallery-caption">纪念馆进门大厅</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="yijiangshan">
+                <img src="images/gallery/yijiangshan-03.jpg" alt="一江山登陆纪念馆-雕塑" loading="lazy">
+                <div class="gallery-caption">馆内主题雕塑</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="yijiangshan">
+                <img src="images/gallery/yijiangshan-04.jpg" alt="一江山登陆纪念馆-实景模型" loading="lazy">
+                <div class="gallery-caption">登陆战实景模型</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="yijiangshan">
+                <img src="images/gallery/yijiangshan-05.jpg" alt="烈士陵园" loading="lazy">
+                <div class="gallery-caption">一江山岛烈士陵园</div>
+            </div>
+
+            <!-- 甲午岩 -->
+            <div class="gallery-item fade-up" data-cat="jiawuyan">
+                <img src="images/gallery/jiawuyan-01.jpg" alt="甲午岩-1" loading="lazy">
+                <div class="gallery-caption">甲午岩海蚀地貌</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="jiawuyan">
+                <img src="images/gallery/jiawuyan-02.jpg" alt="甲午岩-2" loading="lazy">
+                <div class="gallery-caption">甲午岩近景</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="jiawuyan">
+                <img src="images/gallery/jiawuyan-03.jpg" alt="甲午岩观景平台" loading="lazy">
+                <div class="gallery-caption">甲午岩观景平台</div>
+            </div>
+
+            <!-- 观景平台 -->
+            <div class="gallery-item fade-up" data-cat="platform">
+                <img src="images/gallery/platform-01.jpg" alt="观景平台景色" loading="lazy">
+                <div class="gallery-caption">观景平台全景</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="platform">
+                <img src="images/gallery/platform-02.jpg" alt="港口" loading="lazy">
+                <div class="gallery-caption">大陈岛港口</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="platform">
+                <img src="images/gallery/platform-03.jpg" alt="海边" loading="lazy">
+                <div class="gallery-caption">海岛海岸线</div>
+            </div>
+
+            <!-- 鸡笼头 -->
+            <div class="gallery-item fade-up" data-cat="jilongtou">
+                <img src="images/gallery/jilongtou-01.jpg" alt="风电1" loading="lazy">
+                <div class="gallery-caption">鸡笼头风力发电机组</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="jilongtou">
+                <img src="images/gallery/jilongtou-02.jpg" alt="风电2" loading="lazy">
+                <div class="gallery-caption">海岛风电场全景</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="jilongtou">
+                <img src="images/gallery/jilongtou-03.jpg" alt="全电养殖" loading="lazy">
+                <div class="gallery-caption">全电养殖示范区</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="jilongtou">
+                <img src="images/gallery/jilongtou-04.jpg" alt="灯塔" loading="lazy">
+                <div class="gallery-caption">鸡笼头灯塔</div>
+            </div>
+
+            <!-- 垦荒纪念碑 -->
+            <div class="gallery-item fade-up" data-cat="reclamation">
+                <img src="images/gallery/reclamation-01.jpg" alt="垦荒纪念碑" loading="lazy">
+                <div class="gallery-caption">大陈岛垦荒纪念碑</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="reclamation">
+                <img src="images/gallery/reclamation-02.jpg" alt="纪念碑前空地" loading="lazy">
+                <div class="gallery-caption">垦荒纪念碑广场</div>
+            </div>
+
+            <!-- 梅花湾 -->
+            <div class="gallery-item fade-up" data-cat="meihua">
+                <img src="images/gallery/meihua-01.jpg" alt="梅花湾" loading="lazy">
+                <div class="gallery-caption">梅花湾全景</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="meihua">
+                <img src="images/gallery/meihua-02.jpg" alt="夕阳灯塔" loading="lazy">
+                <div class="gallery-caption">梅花湾夕阳灯塔</div>
+            </div>
+
+            <!-- 考察合照 -->
+            <div class="gallery-item fade-up" data-cat="group">
+                <img src="images/gallery/group-01.jpg" alt="一江山岛合照" loading="lazy">
+                <div class="gallery-caption">一江山岛登陆战纪念馆合影</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="group">
+                <img src="images/gallery/group-02.jpg" alt="甲午岩合照" loading="lazy">
+                <div class="gallery-caption">甲午岩考察合影</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="group">
+                <img src="images/gallery/group-03.jpg" alt="垦荒纪念碑合照" loading="lazy">
+                <div class="gallery-caption">垦荒纪念碑合影</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="group">
+                <img src="images/gallery/group-04.jpg" alt="鸡笼头合照" loading="lazy">
+                <div class="gallery-caption">鸡笼头全电养殖考察合影</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="group">
+                <img src="images/gallery/group-05.jpg" alt="梅花湾合照" loading="lazy">
+                <div class="gallery-caption">梅花湾合影</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="group">
+                <img src="images/gallery/group-06.jpg" alt="青垦之门" loading="lazy">
+                <div class="gallery-caption">青垦之门合影</div>
+            </div>
+
+            <!-- 其他 -->
+            <div class="gallery-item fade-up" data-cat="other">
+                <img src="images/gallery/other-01.jpg" alt="上船" loading="lazy">
+                <div class="gallery-caption">乘船登岛考察</div>
+            </div>
+            <div class="gallery-item fade-up" data-cat="other">
+                <img src="images/gallery/other-02.jpg" alt="风电遗址" loading="lazy">
+                <div class="gallery-caption">海岛风电遗址</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lbClose">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lbPrev">&#8249;</button>
+        <button class="lightbox-nav lightbox-next" id="lbNext">&#8250;</button>
+        <img src="" alt="" id="lbImg">
+        <div class="lightbox-caption" id="lbCaption"></div>
+    </div>
+
+    <!-- ==================== 附件下载 (NEW) ==================== -->
+    <div class="section--wide" id="downloads">
+        <div class="section-inner">
+            <div class="section-head">
+                <h2>附件下载</h2>
+                <div class="line"></div>
+                <p>研学方案相关文件下载</p>
+            </div>
+            <div class="dl-grid">
+                <div class="dl-card fade-up">
+                    <div class="dl-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="dl-info">
+                        <h4>研学手册</h4>
+                        <span>PDF · 约4.8MB</span>
+                    </div>
+                    <a href="../终稿/研学手册.pdf" class="dl-btn" download>下载</a>
+                </div>
+                <div class="dl-card fade-up">
+                    <div class="dl-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="dl-info">
+                        <h4>研学景点交通说明</h4>
+                        <span>DOCX · 约13KB</span>
+                    </div>
+                    <a href="../终稿/研学景点交通说明.docx" class="dl-btn" download>下载</a>
+                </div>
+                <div class="dl-card fade-up">
+                    <div class="dl-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="dl-info">
+                        <h4>研学食宿说明</h4>
+                        <span>DOCX · 约14KB</span>
+                    </div>
+                    <a href="../终稿/研学食宿说明.docx" class="dl-btn" download>下载</a>
+                </div>
+                <div class="dl-card fade-up">
+                    <div class="dl-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="dl-info">
+                        <h4>天气应急处置预案</h4>
+                        <span>DOCX · 约15KB</span>
+                    </div>
+                    <a href="../终稿/研学活动天气应急处置预案.docx" class="dl-btn" download>下载</a>
+                </div>
+                <div class="dl-card fade-up">
+                    <div class="dl-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="dl-info">
+                        <h4>家长安全告知书</h4>
+                        <span>DOCX · 约15KB</span>
+                    </div>
+                    <a href="../终稿/研学活动家长安全告知书.docx" class="dl-btn" download>下载</a>
+                </div>
+                <div class="dl-card fade-up">
+                    <div class="dl-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    </div>
+                    <div class="dl-info">
+                        <h4>研学路线地图</h4>
+                        <span>PNG · 约2MB</span>
+                    </div>
+                    <a href="../终稿/研学地图.png" class="dl-btn" download>下载</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 线上报名 (NEW) ==================== -->
+    <section class="section" id="register">
+        <div class="section-head">
+            <h2>线上报名</h2>
+            <div class="line"></div>
+            <p>填写信息提交研学报名申请</p>
+        </div>
+
+        <div class="reg-wrap">
+            <div class="reg-info">
+                <h3>报名须知</h3>
+                <p>本研学项目面向高二选考地理学生，为期两天一夜。研学地点位于浙江省台州市大陈岛，涵盖海岸地貌观测、清洁能源调研、红色垦荒教育等丰富内容。</p>
+                <div class="reg-features">
+                    <div class="reg-feature">
+                        <div class="dot"></div>
+                        <span><strong>研学对象：</strong>高二选考地理学生</span>
+                    </div>
+                    <div class="reg-feature">
+                        <div class="dot"></div>
+                        <span><strong>研学时长：</strong>两天一夜（含住宿）</span>
+                    </div>
+                    <div class="reg-feature">
+                        <div class="dot"></div>
+                        <span><strong>研学地点：</strong>浙江省台州市椒江区大陈岛</span>
+                    </div>
+                    <div class="reg-feature">
+                        <div class="dot"></div>
+                        <span><strong>交通方式：</strong>客轮 + 岛内景交车</span>
+                    </div>
+                    <div class="reg-feature">
+                        <div class="dot"></div>
+                        <span><strong>咨询电话：</strong>0576-88012657</span>
+                    </div>
+                </div>
+            </div>
+
+            <form class="reg-form" id="regForm" action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" placeholder="请输入学生姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="school">学校</label>
+                        <input type="text" id="school" name="school" placeholder="请输入所在学校" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="grade">年级</label>
+                        <select id="grade" name="grade" required>
+                            <option value="">请选择</option>
+                            <option value="高一">高一</option>
+                            <option value="高二">高二</option>
+                            <option value="高三">高三</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">联系电话</label>
+                        <input type="tel" id="phone" name="phone" placeholder="请输入家长或本人电话" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">电子邮箱</label>
+                    <input type="email" id="email" name="email" placeholder="请输入电子邮箱（选填）">
+                </div>
+                <div class="form-group">
+                    <label for="message">备注留言</label>
+                    <textarea id="message" name="message" rows="3" placeholder="如有特殊需求请在此说明（选填）"></textarea>
+                </div>
+                <button type="submit" class="form-submit">提交报名申请</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==================== CTA ==================== -->
+    <div class="cta">
+        <h2>零碳岛语，行走的思政课</h2>
+        <p>从荒岛到低碳岛——探索大陈岛的绿色发展密码</p>
+        <a href="#register" class="cta-btn">立即报名</a>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <p><strong>零碳岛语</strong> —— 大思政视域下的台州大陈岛研学方案</p>
+        <p>九州杯全国研学课程设计大赛参赛作品 &nbsp;|&nbsp; 研学对象：高二选考地理学生</p>
+        <p style="margin-top:4px;opacity:0.4;">&copy; 2026 零碳岛语研学项目</p>
+    </footer>
+
+    <!-- ==================== BACK TO TOP ==================== -->
+    <button class="btt" id="btt" aria-label="回到顶部">&#8593;</button>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        // ---- Mobile nav toggle ----
+        const navBtn = document.getElementById('navBtn');
+        const navLinks = document.getElementById('navLinks');
+        navBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+
+        // ---- Back to top ----
+        const btt = document.getElementById('btt');
+        window.addEventListener('scroll', () => {
+            btt.classList.toggle('show', window.scrollY > 500);
+        });
+        btt.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ---- Scroll fade-up animation ----
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // ---- Gallery filter ----
+        const tabs = document.querySelectorAll('.gallery-tab');
+        const items = document.querySelectorAll('.gallery-item');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => { t.style.background = 'white'; t.style.color = 'var(--text-mid)'; });
+                tab.style.background = 'var(--deep)';
+                tab.style.color = 'white';
+                const filter = tab.dataset.filter;
+                items.forEach(item => {
+                    if (filter === 'all' || item.dataset.cat === filter) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ---- Lightbox ----
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImg');
+        const lbCaption = document.getElementById('lbCaption');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        let currentIndex = -1;
+        let visibleItems = [];
+
+        function updateVisibleItems() {
+            visibleItems = Array.from(galleryItems).filter(item => item.style.display !== 'none');
+        }
+
+        function openLightbox(index) {
+            updateVisibleItems();
+            currentIndex = index;
+            const item = visibleItems[currentIndex];
+            lbImg.src = item.querySelector('img').src;
+            lbCaption.textContent = item.querySelector('.gallery-caption').textContent;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextLightbox() {
+            updateVisibleItems();
+            currentIndex = (currentIndex + 1) % visibleItems.length;
+            const item = visibleItems[currentIndex];
+            lbImg.src = item.querySelector('img').src;
+            lbCaption.textContent = item.querySelector('.gallery-caption').textContent;
+        }
+
+        function prevLightbox() {
+            updateVisibleItems();
+            currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+            const item = visibleItems[currentIndex];
+            lbImg.src = item.querySelector('img').src;
+            lbCaption.textContent = item.querySelector('.gallery-caption').textContent;
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                updateVisibleItems();
+                const idx = visibleItems.indexOf(item);
+                openLightbox(idx >= 0 ? idx : 0);
+            });
+        });
+
+        document.getElementById('lbClose').addEventListener('click', closeLightbox);
+        document.getElementById('lbPrev').addEventListener('click', prevLightbox);
+        document.getElementById('lbNext').addEventListener('click', nextLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard nav for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextLightbox();
+            if (e.key === 'ArrowLeft') prevLightbox();
+        });
+
+        // ---- Form submission (demo - replace form action URL) ----
+        const form = document.getElementById('regForm');
+        form.addEventListener('submit', (e) => {
+            // If no Formspree ID configured, show demo message
+            if (form.action.includes('your-form-id')) {
+                e.preventDefault();
+                alert('提示：报名表单当前为演示模式。\n\n如需正式使用，请在 Formspree.io 注册免费账号，然后将表单 action 地址中的 "your-form-id" 替换为您的真实表单ID。\n\n提交的数据：\n' +
+                    '姓名：' + document.getElementById('name').value + '\n' +
+                    '学校：' + document.getElementById('school').value + '\n' +
+                    '年级：' + document.getElementById('grade').value + '\n' +
+                    '电话：' + document.getElementById('phone').value);
+            }
+        });
+    </script>
+</body>
+</html>
