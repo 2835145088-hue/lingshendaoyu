@@ -632,6 +632,42 @@
             grid-auto-rows: 200px;
             gap: 12px;
         }
+        /* ========================================
+           SKELETON — Wave loading animation
+           ======================================== */
+        .skel {
+            position: relative; overflow: hidden;
+            background: #dce6f0;
+        }
+        .skel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                radial-gradient(ellipse 120% 60% at 30% 20%, rgba(173,200,230,0.6) 0%, transparent 55%),
+                radial-gradient(ellipse 100% 50% at 60% 50%, rgba(190,210,235,0.5) 0%, transparent 50%),
+                radial-gradient(ellipse 130% 55% at 80% 70%, rgba(173,200,230,0.55) 0%, transparent 55%),
+                radial-gradient(ellipse 110% 45% at 10% 80%, rgba(190,210,235,0.45) 0%, transparent 50%),
+                linear-gradient(110deg,
+                    transparent 0%, rgba(220,230,240,0.3) 25%,
+                    rgba(240,244,248,0.6) 37%, rgba(240,244,248,0.6) 40%,
+                    rgba(220,230,240,0.3) 50%, transparent 55%);
+            background-size: 200% 100%;
+            animation: wave 2.8s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+        .skel.loaded { background: transparent; }
+        .skel.loaded::before { display: none; }
+        .skel img {
+            position: relative; z-index: 0;
+            opacity: 0; transition: opacity 0.5s;
+        }
+        .skel.loaded img { opacity: 1; }
+
         .gallery-item {
             position: relative; cursor: pointer; overflow: hidden;
             border-radius: var(--radius);
@@ -1182,7 +1218,7 @@
                 </div>
             </div>
             <div class="route-map fade-up">
-                <img src="images/map.png" alt="研学路线图" loading="lazy">
+                <div class="skel" style="min-height:300px"><img src="images/map.png" alt="研学路线图" loading="lazy"></div>
                 <p class="map-hint">大陈岛研学路线示意</p>
             </div>
         </div>
@@ -1383,7 +1419,7 @@
                 <p>每一个地点都是一本鲜活的地理教科书</p>
             </div>
             <div class="loc-grid">
-                <div class="loc-card fade-up">
+                <div class="loc-card skel fade-up">
                     <img src="images/yijiangshan.jpg" alt="一江山岛登陆战纪念馆" loading="lazy" onerror="this.style.background='#0a3d62'" loading="lazy">
                     <div class="loc-text">
                         <span class="loc-tag">红色教育</span>
@@ -1391,7 +1427,7 @@
                         <p>全国重点文物保护单位，展示一江山岛登陆战的英雄事迹和老照片，是开营仪式与思政教育的起点。</p>
                     </div>
                 </div>
-                <div class="loc-card fade-up">
+                <div class="loc-card skel fade-up">
                     <img src="images/jiawuyan.jpg" alt="甲午岩" loading="lazy" onerror="this.style.background='#1e6f8c'">
                     <div class="loc-text">
                         <span class="loc-tag">海岸地貌</span>
@@ -1399,7 +1435,7 @@
                         <p>典型海蚀地貌集中区，海蚀崖、海蚀平台、海蚀洞发育完整，是观察海岸外力作用与岩石类型的天然课堂。</p>
                     </div>
                 </div>
-                <div class="loc-card fade-up">
+                <div class="loc-card skel fade-up">
                     <img src="images/reclamation.jpg" alt="垦荒纪念碑" loading="lazy" onerror="this.style.background='#2ecc71'">
                     <div class="loc-text">
                         <span class="loc-tag">垦荒精神</span>
@@ -1407,7 +1443,7 @@
                         <p>记录1956年青年垦荒队登岛拓荒历史，周边植被从无到有的演替过程是研究海岛生态修复的活样本。</p>
                     </div>
                 </div>
-                <div class="loc-card fade-up">
+                <div class="loc-card skel fade-up">
                     <img src="images/wind-farm.jpg" alt="风力发电场" loading="lazy" onerror="this.style.background='#3cb4c4'">
                     <div class="loc-text">
                         <span class="loc-tag">清洁能源</span>
@@ -1415,7 +1451,7 @@
                         <p>海岛风电清洁能源基地，年有效风速时数达7637小时，可实地观察风机布设与地形、风向关系。</p>
                     </div>
                 </div>
-                <div class="loc-card fade-up">
+                <div class="loc-card skel fade-up">
                     <img src="images/green-hydrogen.jpg" alt="绿氢示范工程" loading="lazy" onerror="this.style.background='#1a7a3a'">
                     <div class="loc-text">
                         <span class="loc-tag">零碳科技</span>
@@ -1423,7 +1459,7 @@
                         <p>展示绿氢产业原理，富余风电电解海水制氢—储氢—用氢全流程，适合开展"碳达峰碳中和"教学。</p>
                     </div>
                 </div>
-                <div class="loc-card fade-up">
+                <div class="loc-card skel fade-up">
                     <img src="images/coast.jpg" alt="乌沙头砾石滩" loading="lazy" onerror="this.style.background='#e67e22'">
                     <div class="loc-text">
                         <span class="loc-tag">火山地貌</span>
@@ -1431,7 +1467,7 @@
                         <p>火山碎屑岩海岸，红色峭壁与深色砾石对比鲜明，可开展黑石岩石矿物鉴定、火山地貌成因分析。</p>
                     </div>
                 </div>
-                <div class="loc-card fade-up">
+                <div class="loc-card skel fade-up">
                     <img src="images/jilongtou.jpg" alt="双碳馆" loading="lazy" onerror="this.style.background='#0a3d62'">
                     <div class="loc-text">
                         <span class="loc-tag">碳循环教学</span>
@@ -1439,7 +1475,7 @@
                         <p>展示大陈岛从荒岛到低碳岛的转型历程，含碳源碳汇数据展示与清洁能源技术模型，是碳循环教学的实景载体。</p>
                     </div>
                 </div>
-                <div class="loc-card fade-up">
+                <div class="loc-card skel fade-up">
                     <img src="images/meihua-bay.jpg" alt="梅花湾" loading="lazy" onerror="this.style.background='#f39c12'">
                     <div class="loc-text">
                         <span class="loc-tag">研学营地</span>
@@ -1595,125 +1631,125 @@
 
         <div class="gallery-grid" id="galleryGrid">
             <!-- 一江山岛登陆战纪念馆 -->
-            <div class="gallery-item fade-up" data-cat="yijiangshan">
+            <div class="gallery-item skel fade-up" data-cat="yijiangshan">
                 <img src="images/gallery/yijiangshan-01.jpg" alt="一江山登陆纪念馆-大门" loading="lazy">
                 <div class="gallery-caption">一江山岛登陆战纪念馆正门</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="yijiangshan">
+            <div class="gallery-item skel fade-up" data-cat="yijiangshan">
                 <img src="images/gallery/yijiangshan-02.jpg" alt="一江山登陆纪念馆-进门" loading="lazy">
                 <div class="gallery-caption">纪念馆进门大厅</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="yijiangshan">
+            <div class="gallery-item skel fade-up" data-cat="yijiangshan">
                 <img src="images/gallery/yijiangshan-03.jpg" alt="一江山登陆纪念馆-雕塑" loading="lazy">
                 <div class="gallery-caption">馆内主题雕塑</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="yijiangshan">
+            <div class="gallery-item skel fade-up" data-cat="yijiangshan">
                 <img src="images/gallery/yijiangshan-04.jpg" alt="一江山登陆纪念馆-实景模型" loading="lazy">
                 <div class="gallery-caption">登陆战实景模型</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="yijiangshan">
+            <div class="gallery-item skel fade-up" data-cat="yijiangshan">
                 <img src="images/gallery/yijiangshan-05.jpg" alt="烈士陵园" loading="lazy">
                 <div class="gallery-caption">一江山岛烈士陵园</div>
             </div>
 
             <!-- 甲午岩 -->
-            <div class="gallery-item fade-up" data-cat="jiawuyan">
+            <div class="gallery-item skel fade-up" data-cat="jiawuyan">
                 <img src="images/gallery/jiawuyan-01.jpg" alt="甲午岩-1" loading="lazy">
                 <div class="gallery-caption">甲午岩海蚀地貌</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="jiawuyan">
+            <div class="gallery-item skel fade-up" data-cat="jiawuyan">
                 <img src="images/gallery/jiawuyan-02.jpg" alt="甲午岩-2" loading="lazy">
                 <div class="gallery-caption">甲午岩近景</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="jiawuyan">
+            <div class="gallery-item skel fade-up" data-cat="jiawuyan">
                 <img src="images/gallery/jiawuyan-03.jpg" alt="甲午岩观景平台" loading="lazy">
                 <div class="gallery-caption">甲午岩观景平台</div>
             </div>
 
             <!-- 观景平台 -->
-            <div class="gallery-item fade-up" data-cat="platform">
+            <div class="gallery-item skel fade-up" data-cat="platform">
                 <img src="images/gallery/platform-01.jpg" alt="观景平台景色" loading="lazy">
                 <div class="gallery-caption">观景平台全景</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="platform">
+            <div class="gallery-item skel fade-up" data-cat="platform">
                 <img src="images/gallery/platform-02.jpg" alt="港口" loading="lazy">
                 <div class="gallery-caption">大陈岛港口</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="platform">
+            <div class="gallery-item skel fade-up" data-cat="platform">
                 <img src="images/gallery/platform-03.jpg" alt="海边" loading="lazy">
                 <div class="gallery-caption">海岛海岸线</div>
             </div>
 
             <!-- 鸡笼头 -->
-            <div class="gallery-item fade-up" data-cat="jilongtou">
+            <div class="gallery-item skel fade-up" data-cat="jilongtou">
                 <img src="images/gallery/jilongtou-01.jpg" alt="风电1" loading="lazy">
                 <div class="gallery-caption">鸡笼头风力发电机组</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="jilongtou">
+            <div class="gallery-item skel fade-up" data-cat="jilongtou">
                 <img src="images/gallery/jilongtou-02.jpg" alt="风电2" loading="lazy">
                 <div class="gallery-caption">海岛风电场全景</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="jilongtou">
+            <div class="gallery-item skel fade-up" data-cat="jilongtou">
                 <img src="images/gallery/jilongtou-03.jpg" alt="全电养殖" loading="lazy">
                 <div class="gallery-caption">全电养殖示范区</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="jilongtou">
+            <div class="gallery-item skel fade-up" data-cat="jilongtou">
                 <img src="images/gallery/jilongtou-04.jpg" alt="灯塔" loading="lazy">
                 <div class="gallery-caption">鸡笼头灯塔</div>
             </div>
 
             <!-- 垦荒纪念碑 -->
-            <div class="gallery-item fade-up" data-cat="reclamation">
+            <div class="gallery-item skel fade-up" data-cat="reclamation">
                 <img src="images/gallery/reclamation-01.jpg" alt="垦荒纪念碑" loading="lazy">
                 <div class="gallery-caption">大陈岛垦荒纪念碑</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="reclamation">
+            <div class="gallery-item skel fade-up" data-cat="reclamation">
                 <img src="images/gallery/reclamation-02.jpg" alt="纪念碑前空地" loading="lazy">
                 <div class="gallery-caption">垦荒纪念碑广场</div>
             </div>
 
             <!-- 梅花湾 -->
-            <div class="gallery-item fade-up" data-cat="meihua">
+            <div class="gallery-item skel fade-up" data-cat="meihua">
                 <img src="images/gallery/meihua-01.jpg" alt="梅花湾" loading="lazy">
                 <div class="gallery-caption">梅花湾全景</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="meihua">
+            <div class="gallery-item skel fade-up" data-cat="meihua">
                 <img src="images/gallery/meihua-02.jpg" alt="夕阳灯塔" loading="lazy">
                 <div class="gallery-caption">梅花湾夕阳灯塔</div>
             </div>
 
             <!-- 考察合照 -->
-            <div class="gallery-item fade-up" data-cat="group">
+            <div class="gallery-item skel fade-up" data-cat="group">
                 <img src="images/gallery/group-01.jpg" alt="一江山岛合照" loading="lazy">
                 <div class="gallery-caption">一江山岛登陆战纪念馆合影</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="group">
+            <div class="gallery-item skel fade-up" data-cat="group">
                 <img src="images/gallery/group-02.jpg" alt="甲午岩合照" loading="lazy">
                 <div class="gallery-caption">甲午岩考察合影</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="group">
+            <div class="gallery-item skel fade-up" data-cat="group">
                 <img src="images/gallery/group-03.jpg" alt="垦荒纪念碑合照" loading="lazy">
                 <div class="gallery-caption">垦荒纪念碑合影</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="group">
+            <div class="gallery-item skel fade-up" data-cat="group">
                 <img src="images/gallery/group-04.jpg" alt="鸡笼头合照" loading="lazy">
                 <div class="gallery-caption">鸡笼头全电养殖考察合影</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="group">
+            <div class="gallery-item skel fade-up" data-cat="group">
                 <img src="images/gallery/group-05.jpg" alt="梅花湾合照" loading="lazy">
                 <div class="gallery-caption">梅花湾合影</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="group">
+            <div class="gallery-item skel fade-up" data-cat="group">
                 <img src="images/gallery/group-06.jpg" alt="青垦之门" loading="lazy">
                 <div class="gallery-caption">青垦之门合影</div>
             </div>
 
             <!-- 其他 -->
-            <div class="gallery-item fade-up" data-cat="other">
+            <div class="gallery-item skel fade-up" data-cat="other">
                 <img src="images/gallery/other-01.jpg" alt="上船" loading="lazy">
                 <div class="gallery-caption">乘船登岛考察</div>
             </div>
-            <div class="gallery-item fade-up" data-cat="other">
+            <div class="gallery-item skel fade-up" data-cat="other">
                 <img src="images/gallery/other-02.jpg" alt="风电遗址" loading="lazy">
                 <div class="gallery-caption">海岛风电遗址</div>
             </div>
@@ -2006,6 +2042,20 @@
             if (e.key === 'ArrowRight') nextLightbox();
             if (e.key === 'ArrowLeft') prevLightbox();
         });
+
+        // ---- Skeleton loader (wave animation) ----
+        function initSkeletons() {
+            document.querySelectorAll('.skel img').forEach(img => {
+                if (img.complete && img.naturalWidth > 0) {
+                    img.closest('.skel').classList.add('loaded');
+                } else {
+                    img.addEventListener('load', () => img.closest('.skel').classList.add('loaded'));
+                    img.addEventListener('error', () => img.closest('.skel').classList.add('loaded'));
+                }
+            });
+        }
+        initSkeletons();
+        window.addEventListener('load', initSkeletons);
 
         // ---- Form submission (demo - replace form action URL) ----
         const form = document.getElementById('regForm');
