@@ -136,41 +136,62 @@
         }
         .hero-content { position: relative; z-index: 2; max-width: 720px; padding: 0 24px; }
         .hero-tag {
-            display: inline-block;
-            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 18px;
             font-size: 12.5px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 28px;
-            opacity: 0.8;
+            letter-spacing: 4px;
+            margin-bottom: 32px;
+            opacity: 0.75;
+        }
+        .hero-tag::before,
+        .hero-tag::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.3);
         }
         .hero h1 {
-            font-size: 78px;
-            font-weight: 900;
-            letter-spacing: 10px;
-            margin-bottom: 16px;
-            line-height: 1.1;
+            font-size: 82px;
+            font-weight: 200;
+            letter-spacing: 14px;
+            margin-bottom: 18px;
+            line-height: 1.08;
             font-family: "PingFang SC", "Microsoft YaHei", "SimHei", "Helvetica Neue", sans-serif;
         }
-        .hero h1 span { color: var(--accent); }
+        .hero h1 strong { font-weight: 700; }
+        .hero h1 span { color: var(--accent); font-weight: 700; }
         .hero .subtitle {
-            font-size: 21px;
+            font-size: 20px;
             font-weight: 300;
-            letter-spacing: 6px;
-            opacity: 0.88;
-            margin-bottom: 36px;
+            letter-spacing: 8px;
+            opacity: 0.82;
+            margin-bottom: 14px;
+        }
+        .hero .subtitle-line {
+            width: 80px;
+            height: 1px;
+            background: rgba(255,255,255,0.35);
+            margin: 0 auto 36px;
         }
         .hero-meta {
             display: flex;
-            gap: 20px;
+            gap: 0;
             justify-content: center;
             flex-wrap: wrap;
             font-size: 14px;
-            opacity: 0.8;
+            opacity: 0.72;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
         .hero-meta span {
-            padding: 6px 2px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-right: 1px solid rgba(255,255,255,0.2);
         }
+        .hero-meta span:last-child { border-right: none; }
         .scroll-indicator {
             position: absolute;
             bottom: 36px;
@@ -1017,8 +1038,9 @@
             .nav-links a { padding: 10px 24px; }
             .nav-btn { display: block; }
 
-            .hero h1 { font-size: 42px; letter-spacing: 5px; }
-            .hero .subtitle { font-size: 17px; }
+            .hero h1 { font-size: 44px; letter-spacing: 8px; }
+            .hero .subtitle { font-size: 16px; letter-spacing: 4px; }
+            .hero-meta span { padding: 0 12px; }
             .section { padding: 64px 20px; }
             .section--wide { padding: 64px 20px; }
             .section-head h2 { font-size: 30px; letter-spacing: 2px; }
@@ -1048,7 +1070,9 @@
             .loc-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 26px; }
+            .hero h1 { font-size: 30px; letter-spacing: 4px; }
+            .hero-meta { flex-direction: column; gap: 8px; }
+            .hero-meta span { border-right: none; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; gap: 6px; }
             .gallery-item:nth-child(8n+1) { grid-column: span 2; grid-row: span 1; }
             .gallery-item:nth-child(8n+5) { grid-column: span 1; grid-row: span 1; }
@@ -1090,9 +1114,10 @@
     <!-- ==================== HERO ==================== -->
     <header class="hero">
         <div class="hero-content">
-            <div class="hero-tag">九州杯全国研学课程设计大赛</div>
-            <h1>零碳<span>岛语</span></h1>
+            <div class="hero-tag"><span>九州杯全国研学课程设计大赛</span></div>
+            <h1><strong>零碳</strong><span>岛语</span></h1>
             <p class="subtitle">大思政视域下的台州大陈岛研学</p>
+            <div class="subtitle-line"></div>
             <div class="hero-meta">
                 <span>浙江台州 · 大陈岛</span>
                 <span>高二选考地理学生</span>
